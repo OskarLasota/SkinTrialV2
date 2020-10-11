@@ -1,14 +1,23 @@
 package com.frezzcoding.skincareadvisor.common
 
-import android.os.Bundle
-import android.os.PersistableBundle
-import androidx.appcompat.app.AppCompatActivity
+import android.app.Activity
+import android.app.Application
+import com.frezzcoding.skincareadvisor.di.components.DaggerAppComponent
+import dagger.android.AndroidInjector
+import dagger.android.DispatchingAndroidInjector
+import dagger.android.HasActivityInjector
+import javax.inject.Inject
 
-class App : AppCompatActivity() {
+class App : Application(), HasActivityInjector {
 
+    @Inject
+    lateinit var injector: DispatchingAndroidInjector<Activity>
 
-    override fun onCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
-        super.onCreate(savedInstanceState, persistentState)
+    override fun activityInjector(): AndroidInjector<Activity> = injector
+
+    override fun onCreate() {
+        super.onCreate()
+        DaggerAppComponent.builder().build().inject(this)
     }
 
 }
