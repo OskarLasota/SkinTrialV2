@@ -1,4 +1,4 @@
-package com.frezzcoding.skincareadvisor
+package com.frezzcoding.skincareadvisor.common
 
 import android.os.Bundle
 import android.os.PersistableBundle
