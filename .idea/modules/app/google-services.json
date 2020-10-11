@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "197453446622",
+    "firebase_url": "https://skincareadvisor-acae9.firebaseio.com",
+    "project_id": "skincareadvisor-acae9",
+    "storage_bucket": "skincareadvisor-acae9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:197453446622:android:22b5445cbb2f902760714f",
+        "android_client_info": {
+          "package_name": "com.frezzcoding.skincareadvisor"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "197453446622-p0sjnhjardvueg2cmrifj0mrljr6ki8p.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.frezzcoding.skincareadvisor",
+            "certificate_hash": "51b41259890eebc539d81bcfeb38686a7b791456"
+          }
+        },
+        {
+          "client_id": "197453446622-15242nhafneqv05u6fnkuvbn13094t35.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBUThTafg9sQkyu8QAiENEGw_sZpdoUGuE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "197453446622-15242nhafneqv05u6fnkuvbn13094t35.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

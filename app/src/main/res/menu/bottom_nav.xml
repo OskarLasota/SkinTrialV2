@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/homeFragment"
+        android:icon="@drawable/ic_home"
+        android:title="Home"
+        />
+
+    <item
+        android:id="@+id/scheduleFragment"
+        android:icon="@drawable/ic_alarm"
+        android:title="Lembrete"
+        />
+
+    <item
+        android:id="@+id/routineFragment"
+        android:icon="@drawable/ic_moon"
+        android:title="Rotina"
+        />
+
+</menu>
