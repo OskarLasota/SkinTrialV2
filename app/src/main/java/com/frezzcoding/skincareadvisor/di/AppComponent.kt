@@ -8,7 +8,7 @@ import javax.inject.Singleton
 
 
 @Singleton
-@Component(modules = [MainModule::class, ApiModule::class])
+@Component(modules = [MainModule::class, ApiModule::class, ViewModelModule::class])
 interface AppComponent {
 
     @Component.Builder
