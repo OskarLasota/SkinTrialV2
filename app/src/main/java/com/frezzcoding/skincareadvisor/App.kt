@@ -1,8 +1,8 @@
-package com.frezzcoding.skincareadvisor.common
+package com.frezzcoding.skincareadvisor
 
 import android.app.Activity
 import android.app.Application
-import com.frezzcoding.skincareadvisor.di.components.DaggerAppComponent
+import com.frezzcoding.skincareadvisor.di.DaggerAppComponent
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasActivityInjector
@@ -17,7 +17,8 @@ class App : Application(), HasActivityInjector {
 
     override fun onCreate() {
         super.onCreate()
-        DaggerAppComponent.builder().build().inject(this)
+        DaggerAppComponent.builder().application(this)
+            .build().inject(this)
     }
 
 }

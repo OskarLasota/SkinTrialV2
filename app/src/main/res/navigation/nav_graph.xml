@@ -5,6 +5,6 @@
 
     <fragment
         android:id="@+id/homeFragment2"
-        android:name="com.frezzcoding.skincareadvisor.home.HomeFragment"
+        android:name="com.frezzcoding.skincareadvisor.functionalities.home.HomeFragment"
         android:label="HomeFragment" />
 </navigation>

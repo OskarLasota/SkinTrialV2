@@ -1,4 +1,4 @@
-package com.frezzcoding.skincareadvisor.home
+package com.frezzcoding.skincareadvisor.functionalities.home
 
 import androidx.fragment.app.Fragment
 import com.frezzcoding.skincareadvisor.R

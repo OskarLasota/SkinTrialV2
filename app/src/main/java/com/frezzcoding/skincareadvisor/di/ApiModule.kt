@@ -1,4 +1,4 @@
-package com.frezzcoding.skincareadvisor.di.modules
+package com.frezzcoding.skincareadvisor.di
 
 import com.frezzcoding.skincareadvisor.common.api.ApiService
 import dagger.Module
@@ -10,7 +10,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 
-@Module
+@Module(includes = [ViewModelModule::class])
 class ApiModule {
 
     companion object{
