@@ -3,16 +3,11 @@ package com.frezzcoding.skincareadvisor
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.navigation.ui.NavigationUI
-import com.frezzcoding.skincareadvisor.functionalities.home.HomeViewModel
-import dagger.android.AndroidInjection
-import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.support.HasSupportFragmentInjector
 import kotlinx.android.synthetic.main.activity_main.*
@@ -38,11 +33,13 @@ class MainActivity : AppCompatActivity(), HasSupportFragmentInjector {
         setupBottomNavMenu(navController)
         setSupportActionBar(toolbar)
     }
+
     private fun setupBottomNavMenu(navController: NavController) {
         bottom_nav?.let {
             NavigationUI.setupWithNavController(it, navController)
         }
     }
+    
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu_toolbar, menu)
         return true
