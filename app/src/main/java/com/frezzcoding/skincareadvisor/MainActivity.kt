@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.navigation.ui.NavigationUI
+import com.frezzcoding.skincareadvisor.data.User
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.support.HasSupportFragmentInjector
 import kotlinx.android.synthetic.main.activity_main.*
@@ -17,7 +18,7 @@ class MainActivity : AppCompatActivity(), HasSupportFragmentInjector {
 
     @Inject
     lateinit var dispatchingAndroidInjector: DispatchingAndroidInjector<Fragment>
-
+    private var user = User(0, true)
     override fun supportFragmentInjector() = dispatchingAndroidInjector
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -46,16 +47,15 @@ class MainActivity : AppCompatActivity(), HasSupportFragmentInjector {
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-        if(item?.itemId == R.id.homeFragment2){
-            /*
-            if(user.loggedin){
+        if(item?.itemId == R.id.accountFragment){
+            if(user.loggedIn){
                 Navigation.findNavController(findViewById(R.id.nav_host_fragment)).navigate(R.id.accountFragment)
                 return super.onOptionsItemSelected(item)
             }else{
                 Navigation.findNavController(findViewById(R.id.nav_host_fragment)).navigate(R.id.loginFragment)
                 return super.onOptionsItemSelected(item)
             }
-             */
+
         }
         val navController = Navigation.findNavController(this,
             R.id.nav_host_fragment
