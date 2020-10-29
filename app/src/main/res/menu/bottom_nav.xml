@@ -3,19 +3,19 @@
     <item
         android:id="@+id/homeFragment"
         android:icon="@drawable/ic_home"
-        android:title="Home"
+        android:title="@string/home"
         />
 
     <item
         android:id="@+id/scheduleFragment"
         android:icon="@drawable/ic_alarm"
-        android:title="Lembrete"
+        android:title="@string/schedule"
         />
 
     <item
         android:id="@+id/routineFragment"
         android:icon="@drawable/ic_moon"
-        android:title="Rotina"
+        android:title="@string/routine"
         />
 
 </menu>
