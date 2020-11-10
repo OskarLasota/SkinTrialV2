@@ -19,7 +19,7 @@ import com.frezzcoding.skincareadvisor.di.Injectable
 import com.frezzcoding.skincareadvisor.functionalities.home.adapter.CuriosityAdapter
 import javax.inject.Inject
 
-class HomeFragment : Fragment(R.layout.home_view), Injectable, CuriosityAdapter.OnItemClickListener {
+class HomeFragment : Fragment(), Injectable, CuriosityAdapter.OnItemClickListener {
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
