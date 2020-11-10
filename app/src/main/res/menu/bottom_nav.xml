@@ -7,7 +7,7 @@
         />
 
     <item
-        android:id="@+id/scheduleFragment"
+        android:id="@+id/schedulerFragment"
         android:icon="@drawable/ic_alarm"
         android:title="@string/schedule"
         />
