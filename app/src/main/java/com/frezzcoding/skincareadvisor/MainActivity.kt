@@ -31,6 +31,9 @@ class MainActivity : AppCompatActivity(), HasSupportFragmentInjector {
         val navController = Navigation.findNavController(this,
             R.id.nav_host_fragment
         )
+        bottom_nav.setOnNavigationItemReselectedListener {
+            //do nothing to ignore reselection of same freagment
+        }
         setupBottomNavMenu(navController)
         setSupportActionBar(toolbar)
     }

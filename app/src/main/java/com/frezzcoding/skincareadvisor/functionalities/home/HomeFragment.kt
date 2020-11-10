@@ -26,7 +26,7 @@ class HomeFragment : Fragment(R.layout.home_view), Injectable, CuriosityAdapter.
     private lateinit var adapter : CuriosityAdapter
     private lateinit var binding : HomeViewBinding
 
-    val homeViewModel: HomeViewModel by viewModels {
+    private val homeViewModel: HomeViewModel by viewModels {
         viewModelFactory
     }
 
@@ -49,7 +49,7 @@ class HomeFragment : Fragment(R.layout.home_view), Injectable, CuriosityAdapter.
         registerObservers()
     }
 
-    fun registerObservers(){
+    private fun registerObservers(){
         homeViewModel.curiosities.observe(viewLifecycleOwner, Observer {
            it?.let {
                if (it.isNotEmpty()) {
