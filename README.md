@@ -1,5 +1,7 @@
 # SkinTrial
 
+Rewriting the original app found here : https://play.google.com/store/apps/details?id=com.frezzcoding.skincare&hl=en_GB
+
 ## Tech Stack & Open-Library Sources : 
 + Minimum SDK level 21
 + 100% Kotlin based + Coroutines
