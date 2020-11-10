@@ -8,7 +8,7 @@ import com.frezzcoding.skincareadvisor.data.Schedule
 import com.frezzcoding.skincareadvisor.data.User
 
 
-@Database(entities = [User::class, Schedule::class], version = 1, exportSchema = false)
+@Database(entities = [Schedule::class], version = 1, exportSchema = false)
 abstract class AppDatabase : RoomDatabase(){
     abstract fun scheduleDao() : ScheduleDao
 

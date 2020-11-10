@@ -15,6 +15,12 @@
         <action
             android:id="@+id/action_homeFragment_to_accountFragment"
             app:destination="@id/accountFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_schedulerFragment"
+            app:destination="@id/schedulerFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_routineFragment2"
+            app:destination="@id/routineFragment2" />
     </fragment>
     <fragment
         android:id="@+id/accountFragment"
@@ -24,4 +30,20 @@
         android:id="@+id/loginFragment"
         android:name="com.frezzcoding.skincareadvisor.functionalities.login.LoginFragment"
         android:label="LoginFragment" />
+    <fragment
+        android:id="@+id/editScheduleFragment"
+        android:name="com.frezzcoding.skincareadvisor.functionalities.scheduler.EditScheduleFragment"
+        android:label="EditScheduleFragment" />
+    <fragment
+        android:id="@+id/schedulerFragment"
+        android:name="com.frezzcoding.skincareadvisor.functionalities.scheduler.SchedulerFragment"
+        android:label="SchedulerFragment" >
+        <action
+            android:id="@+id/action_schedulerFragment_to_editScheduleFragment"
+            app:destination="@id/editScheduleFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/routineFragment2"
+        android:name="com.frezzcoding.skincareadvisor.functionalities.routines.RoutineFragment"
+        android:label="RoutineFragment" />
 </navigation>

@@ -9,4 +9,11 @@
     <style name="Toolbar.TitleText" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
         <item name="android:letterSpacing">0.10</item>
     </style>
+
+    <style name="DefaultNumberPickerTheme" parent="AppTheme">
+        <item name="colorControlNormal">@color/miss</item>
+    </style>
+
+
+
 </resources>

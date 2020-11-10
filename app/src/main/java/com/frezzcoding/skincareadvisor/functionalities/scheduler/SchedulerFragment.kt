@@ -38,6 +38,10 @@ class SchedulerFragment : Fragment(), Injectable {
         return binding.root
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        setListeners()
+    }
     private fun setListeners(){
         binding.fabAddschedule.setOnClickListener {
             var bundle = bundleOf("schedule" to Schedule())
@@ -58,7 +62,7 @@ class SchedulerFragment : Fragment(), Injectable {
 
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
                 //viewModel.removeSchedule(currentSchedules[viewHolder.adapterPosition].id)
-               // currentSchedules.removeAt(viewHolder.adapterPosition)
+                //currentSchedules.removeAt(viewHolder.adapterPosition)
                 //adapterSchedule.notifyDataSetChanged()
             }
 
