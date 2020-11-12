@@ -13,4 +13,6 @@
     <string name="friday_short">S</string>
     <string name="saturday_short">S</string>
     <string name="sunday_short">D</string>
+    <string name="name_of_product">Nome do produto</string>
+
 </resources>
