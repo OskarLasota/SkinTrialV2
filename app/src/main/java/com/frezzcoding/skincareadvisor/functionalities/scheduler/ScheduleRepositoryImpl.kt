@@ -1,4 +1,6 @@
 package com.frezzcoding.skincareadvisor.functionalities.scheduler
 
-class ScheduleRepositoryImpl {
+import javax.inject.Inject
+
+class ScheduleRepositoryImpl @Inject constructor(){
 }

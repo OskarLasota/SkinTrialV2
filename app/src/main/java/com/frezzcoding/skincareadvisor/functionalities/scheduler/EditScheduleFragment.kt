@@ -17,12 +17,13 @@ import androidx.navigation.Navigation
 import com.frezzcoding.skincareadvisor.R
 import com.frezzcoding.skincareadvisor.data.Schedule
 import com.frezzcoding.skincareadvisor.databinding.EditscheduleFragmentBinding
+import com.frezzcoding.skincareadvisor.di.Injectable
 import com.frezzcoding.skincareadvisor.functionalities.home.HomeViewModel
 import com.frezzcoding.skincareadvisor.utils.NotificationBroadcast
 import java.util.*
 import javax.inject.Inject
 
-class EditScheduleFragment : Fragment() {
+class EditScheduleFragment : Fragment(), Injectable {
 
     private lateinit var binding : EditscheduleFragmentBinding
     private lateinit var schedule : Schedule
@@ -31,7 +32,7 @@ class EditScheduleFragment : Fragment() {
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
 
-    private val viewModel: HomeViewModel by viewModels {
+    private val viewModel: ScheduleCachingViewModel by viewModels {
         viewModelFactory
     }
 
@@ -85,7 +86,7 @@ class EditScheduleFragment : Fragment() {
 
     private fun init(){
         //viewModel = ViewModelProvider.AndroidViewModelFactory(requireActivity().application).create(CachingViewModel(requireActivity().application).javaClass)
-        //viewModel.init()
+        viewModel.init()
 
         binding.timePickerStartHour.minValue = 0
         binding.timePickerStartHour.maxValue = 23
