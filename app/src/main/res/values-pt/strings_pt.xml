@@ -3,4 +3,14 @@
     <string name="home">Home</string>
     <string name="schedule">Lembrete</string>
     <string name="routine">Rotina</string>
+    <string name="add_schedule_title">Adicione um produto à sua rotina</string>
+    <string name="cancel">Cancelar</string>
+    <string name="save">Salvar</string>
+    <string name="monday_short">S</string>
+    <string name="tuesday_short">T</string>
+    <string name="wednesday_short">Q</string>
+    <string name="thursday_short">Q</string>
+    <string name="friday_short">S</string>
+    <string name="saturday_short">S</string>
+    <string name="sunday_short">D</string>
 </resources>
