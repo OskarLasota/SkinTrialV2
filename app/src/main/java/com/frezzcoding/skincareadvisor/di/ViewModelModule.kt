@@ -5,6 +5,8 @@ import androidx.lifecycle.ViewModelProvider
 import com.frezzcoding.skincareadvisor.common.vm.ViewModelFactory
 import com.frezzcoding.skincareadvisor.functionalities.home.HomeViewModel
 import com.frezzcoding.skincareadvisor.functionalities.scheduler.ScheduleCachingViewModel
+import com.frezzcoding.skincareadvisor.functionalities.scheduler.ScheduleRepository
+import com.frezzcoding.skincareadvisor.functionalities.scheduler.ScheduleRepositoryImpl
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
@@ -24,4 +26,8 @@ abstract class ViewModelModule {
 
     @Binds
     abstract fun bindViewModelFactory(factory: ViewModelFactory): ViewModelProvider.Factory
+
+    @Binds
+    abstract fun bindScheduleRepo(scheduleRepositoryImpl: ScheduleRepositoryImpl) : ScheduleRepository
+
 }
