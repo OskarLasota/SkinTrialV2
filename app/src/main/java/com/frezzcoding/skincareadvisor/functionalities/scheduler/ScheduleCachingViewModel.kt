@@ -16,6 +16,14 @@ class ScheduleCachingViewModel @Inject constructor(private val repository : Sche
 
     }
 
+    fun updateSchedule(schedule: Schedule){
+
+    }
+
+    fun insertSchedule(schedule: Schedule){
+
+    }
+
     fun getSchedules() = viewModelScope.launch(Dispatchers.IO){
         repository.getSchedules()
     }
