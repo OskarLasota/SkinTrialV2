@@ -9,10 +9,10 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-//this needs to have the interface of the repo
+
 class ScheduleCachingViewModel @Inject constructor(private val repository : ScheduleRepository) : ViewModel(){
 
-    fun init(){
+    init{
 
     }
 

@@ -11,6 +11,7 @@ class HomeRepository @Inject constructor(var apiService: ApiService) {
             if(response.isSuccessful){
                 return response.body()!!
             }
+        //this needs to be changed, not safe
         return arrayListOf(Curiosity(0, "", "", "false", ""))
     }
 

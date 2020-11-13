@@ -1,9 +1,5 @@
 package com.frezzcoding.skincareadvisor.functionalities.scheduler
 
-import android.app.AlarmManager
-import android.app.PendingIntent
-import android.content.Context
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -13,14 +9,10 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.Navigation
 import com.frezzcoding.skincareadvisor.R
 import com.frezzcoding.skincareadvisor.data.Schedule
 import com.frezzcoding.skincareadvisor.databinding.EditscheduleFragmentBinding
 import com.frezzcoding.skincareadvisor.di.Injectable
-import com.frezzcoding.skincareadvisor.functionalities.home.HomeViewModel
-import com.frezzcoding.skincareadvisor.utils.NotificationBroadcast
-import java.util.*
 import javax.inject.Inject
 
 class EditScheduleFragment : Fragment(), Injectable {
@@ -86,9 +78,6 @@ class EditScheduleFragment : Fragment(), Injectable {
     }
 
     private fun init(){
-        //viewModel = ViewModelProvider.AndroidViewModelFactory(requireActivity().application).create(CachingViewModel(requireActivity().application).javaClass)
-        viewModel.init()
-
         binding.timePickerStartHour.minValue = 0
         binding.timePickerStartHour.maxValue = 23
         binding.timePickerStartHour.displayedValues = arrayOf("00","01","02","03","04","05","06","07","08", "09","10","11","12","13","14","15","16","17","18","19","20","21","22","23")
