@@ -48,6 +48,7 @@ class EditScheduleFragment : Fragment(), Injectable {
 
         setProductValues()
         init()
+        viewModel.getSchedules()
 
         return binding.root
     }

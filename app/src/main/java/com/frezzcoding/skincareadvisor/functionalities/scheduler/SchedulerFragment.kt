@@ -41,6 +41,7 @@ class SchedulerFragment : Fragment(), Injectable {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setListeners()
+
     }
     private fun setListeners(){
         binding.fabAddschedule.setOnClickListener {
