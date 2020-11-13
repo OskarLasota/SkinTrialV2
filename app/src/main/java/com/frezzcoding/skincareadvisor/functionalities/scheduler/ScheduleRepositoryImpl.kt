@@ -13,7 +13,12 @@ class ScheduleRepositoryImpl @Inject constructor(application: Application) : Sch
     override fun getSchedules() = scheduleDao.getSchedules()
 
     override fun insertSchedule(schedule: Schedule) {
-
+        scheduleDao.insert(schedule)
     }
+
+    override fun removeSchedule(schedule: Schedule) {
+        scheduleDao.removeSchedule(schedule.id)
+    }
+
 
 }
