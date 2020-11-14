@@ -19,6 +19,9 @@ import com.frezzcoding.skincareadvisor.data.Schedule
 import com.frezzcoding.skincareadvisor.databinding.EditscheduleFragmentBinding
 import com.frezzcoding.skincareadvisor.di.Injectable
 import com.frezzcoding.skincareadvisor.utils.NotificationBroadcast
+import com.frezzcoding.skincareadvisor.utils.getDisplayHours
+import com.frezzcoding.skincareadvisor.utils.getDisplayMinutes
+import com.frezzcoding.skincareadvisor.utils.markSelectedDays
 import java.util.*
 import javax.inject.Inject
 
@@ -58,60 +61,35 @@ class EditScheduleFragment : Fragment(), Injectable {
     private fun setProductValues(){
         if(requireArguments().get("schedule") != null) {
             schedule = requireArguments().get("schedule") as Schedule
-            binding.schedule = schedule
-            if(schedule.id != 0) {
-                edit = true
-                if(schedule.monday){
-                    binding.tvMonday.backgroundTintList = binding.root.resources.getColorStateList(R.color.greyish)
+            schedule?.let {
+                if (schedule.id != 0) {
+                    edit = true
                 }
-                if(schedule.tuesday){
-                    binding.tvTuesday.backgroundTintList =  binding.root.resources.getColorStateList(R.color.greyish)
-                }
-                if(schedule.wednesday){
-                    binding.tvWednesday.backgroundTintList =  binding.root.resources.getColorStateList(R.color.greyish)
-                }
-                if(schedule.thursday){
-                    binding.tvThursday.backgroundTintList =  binding.root.resources.getColorStateList(R.color.greyish)
-                }
-                if(schedule.friday){
-                    binding.tvFriday.backgroundTintList =  binding.root.resources.getColorStateList(R.color.greyish)
-                }
-                if(schedule.saturday){
-                    binding.tvSaturday.backgroundTintList =  binding.root.resources.getColorStateList(R.color.greyish)
-                }
-                if(schedule.sunday){
-                    binding.tvSunday.backgroundTintList =  binding.root.resources.getColorStateList(R.color.greyish)
-                }
-
             }
+            binding.schedule = schedule
+            schedule.markSelectedDays(binding) //extension function
         }
     }
 
     private fun init(){
         binding.timePickerStartHour.minValue = 0
         binding.timePickerStartHour.maxValue = 23
-        binding.timePickerStartHour.displayedValues = arrayOf("00","01","02","03","04","05","06","07","08", "09","10","11","12","13","14","15","16","17","18","19","20","21","22","23")
+        binding.timePickerStartHour.displayedValues = getDisplayHours() //extension function
         binding.timePickerStartMin.minValue = 0
         binding.timePickerStartMin.maxValue = 59
-        binding.timePickerStartMin.displayedValues = arrayOf("00","01","02","03","04","05","06","07","08",
-            "09","10","11","12","13","14","15","16","17","18",
-            "19","20","21","22","23","24","25","26","27","28",
-            "29","30","31","32", "33","34","35","36","37","38",
-            "39","40","41","42","43","44","45","46","47","48",
-            "49","50","51","52","53","54","55","56","57","58","59")
+        binding.timePickerStartMin.displayedValues = getDisplayMinutes() //extension function
     }
 
     private fun validationPasses() : Boolean{
         if(binding.etTitle.text.toString().length < 2){
-            Toast.makeText(this.context, "Digite o nome do produto!", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this.context, R.string.empty_name_warning, Toast.LENGTH_SHORT).show()
             return false
         }
         return true
     }
 
 
-
-
+    //handle device time change
     private fun setListeners(){
         binding.btnSave.setOnClickListener {
             if(validationPasses()){
