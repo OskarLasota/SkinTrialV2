@@ -21,7 +21,6 @@ import com.frezzcoding.skincareadvisor.di.Injectable
 import com.frezzcoding.skincareadvisor.utils.NotificationBroadcast
 import com.frezzcoding.skincareadvisor.utils.getDisplayHours
 import com.frezzcoding.skincareadvisor.utils.getDisplayMinutes
-import com.frezzcoding.skincareadvisor.utils.markSelectedDays
 import java.util.*
 import javax.inject.Inject
 
@@ -61,13 +60,41 @@ class EditScheduleFragment : Fragment(), Injectable {
     private fun setProductValues(){
         if(requireArguments().get("schedule") != null) {
             schedule = requireArguments().get("schedule") as Schedule
-            schedule?.let {
-                if (schedule.id != 0) {
-                    edit = true
-                }
-            }
             binding.schedule = schedule
-            schedule.markSelectedDays(binding) //extension function
+            schedule?.let{
+            if(schedule.id != 0) {
+                edit = true
+                    if (schedule.monday) {
+                        binding.tvMonday.backgroundTintList =
+                            binding.root.resources.getColorStateList(R.color.greyish)
+                    }
+                    if (schedule.tuesday) {
+                        binding.tvTuesday.backgroundTintList =
+                            binding.root.resources.getColorStateList(R.color.greyish)
+                    }
+                    if (schedule.wednesday) {
+                        binding.tvWednesday.backgroundTintList =
+                            binding.root.resources.getColorStateList(R.color.greyish)
+                    }
+                    if (schedule.thursday) {
+                        binding.tvThursday.backgroundTintList =
+                            binding.root.resources.getColorStateList(R.color.greyish)
+                    }
+                    if (schedule.friday) {
+                        binding.tvFriday.backgroundTintList =
+                            binding.root.resources.getColorStateList(R.color.greyish)
+                    }
+                    if (schedule.saturday) {
+                        binding.tvSaturday.backgroundTintList =
+                            binding.root.resources.getColorStateList(R.color.greyish)
+                    }
+                    if (schedule.sunday) {
+                        binding.tvSunday.backgroundTintList =
+                            binding.root.resources.getColorStateList(R.color.greyish)
+                    }
+                }
+
+            }
         }
     }
 
@@ -278,8 +305,6 @@ class EditScheduleFragment : Fragment(), Injectable {
                     calendar1.add(Calendar.DATE, 1)
                     continue
                 }
-                println("i : "+i)
-                println(calendar1.time)
                 when(i){
                     0-> if(schedule.thursday) {return calendar1.timeInMillis}
                     1-> if(schedule.friday) {return calendar1.timeInMillis}

@@ -1,36 +1,5 @@
 package com.frezzcoding.skincareadvisor.utils
 
-import com.frezzcoding.skincareadvisor.R
-import com.frezzcoding.skincareadvisor.data.Schedule
-import com.frezzcoding.skincareadvisor.databinding.EditscheduleFragmentBinding
-
-//is this testable?
-fun Schedule.markSelectedDays(binding : EditscheduleFragmentBinding){
-    if(this.id != 0) {
-        if(this.monday){
-            binding.tvMonday.backgroundTintList = binding.root.resources.getColorStateList(R.color.greyish)
-        }
-        if(this.tuesday){
-            binding.tvTuesday.backgroundTintList =  binding.root.resources.getColorStateList(R.color.greyish)
-        }
-        if(this.wednesday){
-            binding.tvWednesday.backgroundTintList =  binding.root.resources.getColorStateList(R.color.greyish)
-        }
-        if(this.thursday){
-            binding.tvThursday.backgroundTintList =  binding.root.resources.getColorStateList(R.color.greyish)
-        }
-        if(this.friday){
-            binding.tvFriday.backgroundTintList =  binding.root.resources.getColorStateList(R.color.greyish)
-        }
-        if(this.saturday){
-            binding.tvSaturday.backgroundTintList =  binding.root.resources.getColorStateList(R.color.greyish)
-        }
-        if(this.sunday){
-            binding.tvSunday.backgroundTintList =  binding.root.resources.getColorStateList(R.color.greyish)
-        }
-
-    }
-}
 
 fun getDisplayMinutes() : Array<String>{
     return arrayOf("00","01","02","03","04","05","06","07","08",
