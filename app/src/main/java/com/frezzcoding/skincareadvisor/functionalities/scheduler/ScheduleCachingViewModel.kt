@@ -26,7 +26,7 @@ class ScheduleCachingViewModel @Inject constructor(private val repository : Sche
     }
 
     fun updateSchedule(schedule: Schedule) = viewModelScope.launch(Dispatchers.IO){
-
+        repository.updateSchedule(schedule)
     }
 
     fun insertSchedule(schedule: Schedule) = viewModelScope.launch(Dispatchers.IO){

@@ -25,7 +25,7 @@ class ScheduleRepositoryImpl @Inject constructor(application: Application) : Sch
     }
 
     override fun updateSchedule(schedule: Schedule) {
-
+        scheduleDao.update(schedule.id, schedule.checked, schedule.title, schedule.hour, schedule.min, schedule.monday, schedule.tuesday, schedule.wednesday, schedule.thursday, schedule.friday, schedule.saturday, schedule.sunday)
     }
 
 
