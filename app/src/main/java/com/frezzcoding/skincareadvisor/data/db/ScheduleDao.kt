@@ -24,5 +24,8 @@ interface ScheduleDao {
     @Query("DELETE FROM schedule_table WHERE id = :id")
     fun removeSchedule(id : Int)
 
+    @Query("SELECT MAX(id) FROM schedule_table")
+    fun getMaxScheduleId() : Int
+
 
 }

@@ -13,6 +13,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.observe
 import androidx.navigation.Navigation
 import com.frezzcoding.skincareadvisor.R
 import com.frezzcoding.skincareadvisor.data.Schedule
@@ -29,6 +30,7 @@ class EditScheduleFragment : Fragment(), Injectable {
     private lateinit var binding : EditscheduleFragmentBinding
     private lateinit var schedule : Schedule
     private var edit : Boolean = false
+    private var maxScheduleId : Int = 0
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
@@ -49,12 +51,15 @@ class EditScheduleFragment : Fragment(), Injectable {
         setListeners()
         setProductValues()
         init()
-
-        /*
-         TODO refactor this code into extension functions
-         */
+        registerObservers()
 
         return binding.root
+    }
+
+    private fun registerObservers(){
+        viewModel.maxId.observe(viewLifecycleOwner) {
+            maxScheduleId = it
+        }
     }
 
     private fun setProductValues(){
@@ -121,8 +126,7 @@ class EditScheduleFragment : Fragment(), Injectable {
         binding.btnSave.setOnClickListener {
             if(validationPasses()){
                 if(!edit){
-                    var tempid: Int = (Math.random() * 15340).toInt()
-                    schedule.id = tempid
+                    schedule.id = maxScheduleId
                     schedule.checked = true
                 }
                 schedule.title = binding.etTitle.text.toString()

@@ -20,5 +20,13 @@ class ScheduleRepositoryImpl @Inject constructor(application: Application) : Sch
         scheduleDao.removeSchedule(schedule.id)
     }
 
+    override fun getNextScheduleId() : Int {
+        return scheduleDao.getMaxScheduleId() + 1
+    }
+
+    override fun updateSchedule(schedule: Schedule) {
+
+    }
+
 
 }
