@@ -101,7 +101,7 @@
                     android:theme="@style/DefaultNumberPickerTheme"
                     android:value="@{schedule.hour}"
                     app:layout_constraintRight_toLeftOf="@id/tv_centre"
-                    app:layout_constraintTop_toBottomOf="@id/days_layout" />
+                    app:layout_constraintTop_toBottomOf="@id/layout_selectdays" />
 
                 <TextView
                     android:id="@+id/tv_centre"
@@ -119,14 +119,8 @@
                     android:theme="@style/DefaultNumberPickerTheme"
                     android:value="@{schedule.min}"
                     app:layout_constraintLeft_toRightOf="@id/tv_centre"
-                    app:layout_constraintTop_toBottomOf="@id/days_layout" />
+                    app:layout_constraintTop_toBottomOf="@id/layout_selectdays" />
 
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/days_layout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="20dp"
-                    app:layout_constraintTop_toBottomOf="@id/til_title">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:id="@+id/layout_selectdays"
@@ -134,7 +128,8 @@
                         android:layout_height="wrap_content"
                         app:layout_constraintLeft_toLeftOf="parent"
                         app:layout_constraintRight_toRightOf="parent"
-                        app:layout_constraintTop_toTopOf="parent">
+                        android:layout_margin="20dp"
+                        app:layout_constraintTop_toBottomOf="@id/til_title">
 
                         <Button
                             android:id="@+id/tv_monday"
@@ -233,7 +228,6 @@
                             app:layout_constraintRight_toRightOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
 
-                    </androidx.constraintlayout.widget.ConstraintLayout>
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.constraintlayout.widget.ConstraintLayout>
 
