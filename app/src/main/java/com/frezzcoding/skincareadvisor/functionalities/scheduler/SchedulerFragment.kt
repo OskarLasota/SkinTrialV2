@@ -7,7 +7,9 @@ import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.observe
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
@@ -26,6 +28,10 @@ class SchedulerFragment : Fragment(), Injectable {
 
     private lateinit var binding : SchedulerViewBinding
 
+    private val viewModel: ScheduleCachingViewModel by viewModels {
+        viewModelFactory
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -41,9 +47,16 @@ class SchedulerFragment : Fragment(), Injectable {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setListeners()
-
+        viewModel.getSchedules()
     }
     private fun setListeners(){
+
+        viewModel.schedules.observe(viewLifecycleOwner) { list ->
+            if(!list.isNullOrEmpty()){
+                //update adapter
+            }
+        }
+
         binding.fabAddschedule.setOnClickListener {
             var bundle = bundleOf("schedule" to Schedule())
             Navigation.findNavController(binding.root).navigate(R.id.editScheduleFragment, bundle)

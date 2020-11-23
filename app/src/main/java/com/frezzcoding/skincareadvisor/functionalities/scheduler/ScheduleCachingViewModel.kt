@@ -19,6 +19,9 @@ class ScheduleCachingViewModel @Inject constructor(private val repository : Sche
     private val _maxId = MutableLiveData<Int>()
     val maxId : LiveData<Int> = _maxId
 
+    private val _schedules = MutableLiveData<List<Schedule>>()
+    val schedules : LiveData<List<Schedule>> = _schedules
+
     init{
         CoroutineScope(Dispatchers.IO).launch {
             _maxId.postValue(repository.getNextScheduleId())
@@ -34,7 +37,7 @@ class ScheduleCachingViewModel @Inject constructor(private val repository : Sche
     }
 
     fun getSchedules() = viewModelScope.launch(Dispatchers.IO){
-        repository.getSchedules()
+        _schedules.postValue(repository.getSchedules())
     }
 
 
