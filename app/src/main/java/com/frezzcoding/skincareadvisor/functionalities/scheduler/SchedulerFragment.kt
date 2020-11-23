@@ -20,14 +20,14 @@ import com.frezzcoding.skincareadvisor.databinding.SchedulerViewBinding
 import com.frezzcoding.skincareadvisor.di.Injectable
 import javax.inject.Inject
 
-class SchedulerFragment : Fragment(), Injectable {
+class SchedulerFragment : Fragment(), Injectable, SchedulesAdapter.OnItemClickListener {
 
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
 
     private lateinit var binding : SchedulerViewBinding
-
+    private lateinit var adapter : SchedulesAdapter
     private val viewModel: ScheduleCachingViewModel by viewModels {
         viewModelFactory
     }
@@ -54,6 +54,7 @@ class SchedulerFragment : Fragment(), Injectable {
         viewModel.schedules.observe(viewLifecycleOwner) { list ->
             if(!list.isNullOrEmpty()){
                 //update adapter
+                adapter = SchedulesAdapter(list, viewModel, this, context)
             }
         }
 
@@ -83,6 +84,10 @@ class SchedulerFragment : Fragment(), Injectable {
         })
         helper.attachToRecyclerView(binding.scheduleRecycler)
 
+    }
+
+    override fun onItemClick(schedule: Schedule) {
+        TODO("Not yet implemented")
     }
 
 }
