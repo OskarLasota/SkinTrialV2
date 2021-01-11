@@ -54,7 +54,7 @@ class SchedulerFragment : Fragment(), Injectable, SchedulesAdapter.OnItemClickLi
         viewModel.schedules.observe(viewLifecycleOwner) { list ->
             if(!list.isNullOrEmpty()){
                 //update adapter
-                adapter = SchedulesAdapter(list, viewModel, this, context)
+                adapter = SchedulesAdapter(list, viewModel, this, requireContext())
             }
         }
 

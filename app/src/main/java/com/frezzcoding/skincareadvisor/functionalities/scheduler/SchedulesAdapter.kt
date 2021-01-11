@@ -4,8 +4,10 @@ import android.app.AlarmManager
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
+import android.os.Build
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.annotation.RequiresApi
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
@@ -17,7 +19,7 @@ import maes.tech.intentanim.CustomIntent
 import java.util.*
 
 
-class SchedulesAdapter(private val _data : List<Schedule>, private val viewModel : ScheduleCachingViewModel, private var listener : OnItemClickListener, private var ctx : Context) : RecyclerView.Adapter<ScheduleAdapter.ViewHolder>(){
+class SchedulesAdapter(private val _data : List<Schedule>, private val viewModel : ScheduleCachingViewModel, private var listener : OnItemClickListener, private var ctx : Context) : RecyclerView.Adapter<SchedulesAdapter.ViewHolder>(){
 
     private lateinit var binding : CardSchedulesBinding
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -55,6 +57,7 @@ class SchedulesAdapter(private val _data : List<Schedule>, private val viewModel
             }
         }
 
+        @RequiresApi(Build.VERSION_CODES.M)
         fun bind(schedule: Schedule, listener: OnItemClickListener) {
             _listener = listener
             binding.schedule = schedule
