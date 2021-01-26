@@ -19,11 +19,16 @@ import maes.tech.intentanim.CustomIntent
 import java.util.*
 
 
-class SchedulesAdapter(private val _data : List<Schedule>, private val viewModel : ScheduleCachingViewModel, private var listener : OnItemClickListener, private var ctx : Context) : RecyclerView.Adapter<SchedulesAdapter.ViewHolder>(){
+class SchedulesAdapter(
+    private val _data: List<Schedule>,
+    private val viewModel: ScheduleCachingViewModel,
+    private var listener: OnItemClickListener,
+    private var ctx: Context
+) : RecyclerView.Adapter<SchedulesAdapter.ViewHolder>() {
 
-    private lateinit var binding : CardSchedulesBinding
+    private lateinit var binding: CardSchedulesBinding
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        var inflater : LayoutInflater = LayoutInflater.from(parent.context)
+        var inflater: LayoutInflater = LayoutInflater.from(parent.context)
         binding = DataBindingUtil.inflate(inflater, R.layout.card_schedules, parent, false)
 
         return ViewHolder(binding, viewModel, ctx)
@@ -34,7 +39,7 @@ class SchedulesAdapter(private val _data : List<Schedule>, private val viewModel
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val schedule : Schedule = _data[position]
+        val schedule: Schedule = _data[position]
         holder.bind(schedule, listener)
     }
 
@@ -43,7 +48,11 @@ class SchedulesAdapter(private val _data : List<Schedule>, private val viewModel
         //fun onLongPressClickListener(product : Product)
     }
 
-    class ViewHolder(private val binding: CardSchedulesBinding, private val viewModel : ScheduleCachingViewModel, private val ctx : Context) : RecyclerView.ViewHolder(binding.root) {
+    class ViewHolder(
+        private val binding: CardSchedulesBinding,
+        private val viewModel: ScheduleCachingViewModel,
+        private val ctx: Context
+    ) : RecyclerView.ViewHolder(binding.root) {
         private lateinit var schedule: Schedule
         private lateinit var _listener: OnItemClickListener
 
@@ -57,7 +66,6 @@ class SchedulesAdapter(private val _data : List<Schedule>, private val viewModel
             }
         }
 
-        @RequiresApi(Build.VERSION_CODES.M)
         fun bind(schedule: Schedule, listener: OnItemClickListener) {
             _listener = listener
             binding.schedule = schedule
@@ -67,7 +75,6 @@ class SchedulesAdapter(private val _data : List<Schedule>, private val viewModel
             binding.switch1.setOnClickListener {
                 if (binding.switch1.isChecked) {
                     var time = getNextNotification(schedule)
-
                     if (time != 0L) {
                         var inte = Intent(ctx, NotificationBroadcast::class.java)
                         inte.putExtra("key", schedule.id)
@@ -104,7 +111,7 @@ class SchedulesAdapter(private val _data : List<Schedule>, private val viewModel
         private fun getNextNotification(schedule: Schedule): Long {
             val calendar = Calendar.getInstance()
             calendar.set(Calendar.HOUR_OF_DAY, schedule.hour)
-            calendar.set(Calendar.MINUTE, schedule.hour)
+            calendar.set(Calendar.MINUTE, schedule.min)
 
             if (calendar.time.toString().substring(0, 3) == "Mon") {
                 val current = Calendar.getInstance()

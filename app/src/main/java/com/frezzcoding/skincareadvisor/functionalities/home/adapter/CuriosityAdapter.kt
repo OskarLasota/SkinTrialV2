@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import com.asksira.loopingviewpager.LoopingPagerAdapter
 import com.frezzcoding.skincareadvisor.R
 import com.frezzcoding.skincareadvisor.data.Curiosity
@@ -17,21 +18,23 @@ class CuriosityAdapter(context : Context,
                        private var onClickListener : OnItemClickListener) : LoopingPagerAdapter<Curiosity>(context, itemList, isInfinite)
 {
     override fun bindView(convertView: View, listPosition: Int, viewType: Int) {
-        if(listPosition <= itemList!!.size) {
-            if (itemList!![listPosition].ad == "true") {
-                var v = convertView.findViewById<ImageView>(R.id.iv_ad)
-                v.visibility = View.VISIBLE
-                v.setOnClickListener {
-                    onClickListener.onItemClick(itemList!![listPosition])
+        itemList?.let {list ->
+            if(listPosition <= list.size) {
+                if (list[listPosition].ad == "true") {
+                    var adImage = convertView.findViewById<ImageView>(R.id.iv_ad)
+                    adImage.visibility = View.VISIBLE
+                    adImage.setOnClickListener {
+                        onClickListener.onItemClick(list[listPosition])
+                    }
                 }
             }
+            val description = convertView.findViewById<TextView>(R.id.description)
+            val image = convertView.findViewById<ImageView>(R.id.image)
+            convertView.findViewById<View>(R.id.image)
+                .setBackgroundColor(ContextCompat.getColor(context, android.R.color.background_light))
+            description.text = list[listPosition].description
+            Picasso.get().load(list[listPosition].image_url).into(image)
         }
-        val description = convertView.findViewById<TextView>(R.id.description)
-        val image = convertView.findViewById<ImageView>(R.id.image)
-        convertView.findViewById<View>(R.id.image)
-            .setBackgroundColor(context.resources.getColor(android.R.color.background_light))
-        description.text = itemList?.get(listPosition)?.description
-        Picasso.get().load(itemList?.get(listPosition)?.image_url).into(image)
     }
 
     override fun inflateView(viewType: Int, container: ViewGroup, listPosition: Int): View {
