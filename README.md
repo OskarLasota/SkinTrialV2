@@ -29,3 +29,4 @@ Rewriting the original app found here : https://play.google.com/store/apps/detai
 
 + JUnit
 + Integration Tests
++ Re-implement notification scheduler feature, need to use broadcast to listen to timezone and user time change
