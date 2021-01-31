@@ -40,6 +40,10 @@ class ScheduleCachingViewModel @Inject constructor(private val repository : Sche
         _schedules.postValue(repository.getSchedules())
     }
 
+    fun removeSchedule(schedule: Schedule) = viewModelScope.launch(Dispatchers.IO){
+        repository.removeSchedule(schedule)
+    }
+
 
 
 }

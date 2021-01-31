@@ -11,11 +11,11 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.observe
 import androidx.navigation.Navigation
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.frezzcoding.skincareadvisor.R
 import com.frezzcoding.skincareadvisor.data.Schedule
-import com.frezzcoding.skincareadvisor.databinding.HomeViewBinding
 import com.frezzcoding.skincareadvisor.databinding.SchedulerViewBinding
 import com.frezzcoding.skincareadvisor.di.Injectable
 import javax.inject.Inject
@@ -27,10 +27,11 @@ class SchedulerFragment : Fragment(), Injectable, SchedulesAdapter.OnItemClickLi
     lateinit var viewModelFactory: ViewModelProvider.Factory
 
     private lateinit var binding : SchedulerViewBinding
-    private lateinit var adapter : SchedulesAdapter
+    private lateinit var scheduleAdapter : SchedulesAdapter
     private val viewModel: ScheduleCachingViewModel by viewModels {
         viewModelFactory
     }
+    private lateinit var currentSchedules : ArrayList<Schedule>
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -50,11 +51,15 @@ class SchedulerFragment : Fragment(), Injectable, SchedulesAdapter.OnItemClickLi
         viewModel.getSchedules()
     }
     private fun setListeners(){
-
         viewModel.schedules.observe(viewLifecycleOwner) { list ->
+            currentSchedules = list as ArrayList
             if(!list.isNullOrEmpty()){
                 //update adapter
-                adapter = SchedulesAdapter(list, viewModel, this, requireContext())
+                scheduleAdapter = SchedulesAdapter(list, viewModel, this, requireContext())
+                binding.scheduleRecycler.apply {
+                    adapter = scheduleAdapter
+                    layoutManager = GridLayoutManager(requireContext(), 1)
+                }
             }
         }
 
@@ -76,9 +81,9 @@ class SchedulerFragment : Fragment(), Injectable, SchedulesAdapter.OnItemClickLi
             }
 
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
-                //viewModel.removeSchedule(currentSchedules[viewHolder.adapterPosition].id)
-                //currentSchedules.removeAt(viewHolder.adapterPosition)
-                //adapterSchedule.notifyDataSetChanged()
+                viewModel.removeSchedule(currentSchedules[viewHolder.adapterPosition])
+                currentSchedules.removeAt(viewHolder.adapterPosition)
+                scheduleAdapter.notifyDataSetChanged()
             }
 
         })
@@ -87,7 +92,8 @@ class SchedulerFragment : Fragment(), Injectable, SchedulesAdapter.OnItemClickLi
     }
 
     override fun onItemClick(schedule: Schedule) {
-        TODO("Not yet implemented")
+        var bundle = bundleOf("schedule" to schedule)
+        Navigation.findNavController(binding.root).navigate(R.id.editScheduleFragment, bundle)
     }
 
 }
