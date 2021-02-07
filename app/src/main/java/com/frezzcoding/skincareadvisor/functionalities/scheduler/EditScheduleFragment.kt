@@ -160,7 +160,7 @@ class EditScheduleFragment : Fragment(), Injectable {
         //listeners for each day button
         binding.tvMonday.setOnClickListener {
             if(schedule.monday){
-                binding.tvMonday.backgroundTintList = ContextCompat.getColorStateList(requireContext(), R.color.miss)
+                binding.tvMonday.backgroundTintList = ContextCompat.getColorStateList(requireContext(), R.color.colorPrimary)
                 schedule.monday = false
             }else{
                 binding.tvMonday.backgroundTintList = ContextCompat.getColorStateList(requireContext(), R.color.greyish)
@@ -169,7 +169,7 @@ class EditScheduleFragment : Fragment(), Injectable {
         }
         binding.tvTuesday.setOnClickListener {
             if(schedule.tuesday){
-                binding.tvTuesday.backgroundTintList = ContextCompat.getColorStateList(requireContext(), R.color.miss)
+                binding.tvTuesday.backgroundTintList = ContextCompat.getColorStateList(requireContext(), R.color.colorPrimary)
                 schedule.tuesday = false
             }else{
                 binding.tvTuesday.backgroundTintList = ContextCompat.getColorStateList(requireContext(), R.color.greyish)
@@ -178,7 +178,7 @@ class EditScheduleFragment : Fragment(), Injectable {
         }
         binding.tvWednesday.setOnClickListener {
             if(schedule.wednesday){
-                binding.tvWednesday.backgroundTintList = ContextCompat.getColorStateList(requireContext(), R.color.miss)
+                binding.tvWednesday.backgroundTintList = ContextCompat.getColorStateList(requireContext(), R.color.colorPrimary)
                 schedule.wednesday = false
             }else{
                 binding.tvWednesday.backgroundTintList = ContextCompat.getColorStateList(requireContext(), R.color.greyish)
@@ -187,7 +187,7 @@ class EditScheduleFragment : Fragment(), Injectable {
         }
         binding.tvThursday.setOnClickListener {
             if(schedule.thursday){
-                binding.tvThursday.backgroundTintList = ContextCompat.getColorStateList(requireContext(), R.color.miss)
+                binding.tvThursday.backgroundTintList = ContextCompat.getColorStateList(requireContext(), R.color.colorPrimary)
                 schedule.thursday = false
             }else{
                 binding.tvThursday.backgroundTintList = ContextCompat.getColorStateList(requireContext(), R.color.greyish)
@@ -196,7 +196,7 @@ class EditScheduleFragment : Fragment(), Injectable {
         }
         binding.tvFriday.setOnClickListener {
             if(schedule.friday){
-                binding.tvFriday.backgroundTintList = ContextCompat.getColorStateList(requireContext(), R.color.miss)
+                binding.tvFriday.backgroundTintList = ContextCompat.getColorStateList(requireContext(), R.color.colorPrimary)
                 schedule.friday = false
             }else{
                 binding.tvFriday.backgroundTintList = ContextCompat.getColorStateList(requireContext(), R.color.greyish)
@@ -205,7 +205,7 @@ class EditScheduleFragment : Fragment(), Injectable {
         }
         binding.tvSaturday.setOnClickListener {
             if(schedule.saturday){
-                binding.tvSaturday.backgroundTintList = ContextCompat.getColorStateList(requireContext(), R.color.miss)
+                binding.tvSaturday.backgroundTintList = ContextCompat.getColorStateList(requireContext(), R.color.colorPrimary)
                 schedule.saturday = false
             }else{
                 binding.tvSaturday.backgroundTintList = ContextCompat.getColorStateList(requireContext(), R.color.greyish)
@@ -214,7 +214,7 @@ class EditScheduleFragment : Fragment(), Injectable {
         }
         binding.tvSunday.setOnClickListener {
             if(schedule.sunday){
-                binding.tvSunday.backgroundTintList = ContextCompat.getColorStateList(requireContext(), R.color.miss)
+                binding.tvSunday.backgroundTintList = ContextCompat.getColorStateList(requireContext(), R.color.colorPrimary)
                 schedule.sunday = false
             }else{
                 binding.tvSunday.backgroundTintList = ContextCompat.getColorStateList(requireContext(), R.color.greyish)
