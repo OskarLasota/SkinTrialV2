@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.frezzcoding.skincareadvisor.R
 import com.frezzcoding.skincareadvisor.data.Schedule
+import com.frezzcoding.skincareadvisor.databinding.SchedulerViewBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
