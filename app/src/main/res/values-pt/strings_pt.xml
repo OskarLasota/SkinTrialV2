@@ -16,4 +16,7 @@
     <string name="name_of_product">Nome do produto</string>
     <string name="empty_name_warning">Digite o nome do produto!</string>
 
+    <string name="notificaiton_title">SkinTrial</string>
+    <string name="notification_description">Hora do Skincare | </string>
+
 </resources>

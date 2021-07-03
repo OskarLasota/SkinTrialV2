@@ -15,4 +15,8 @@
     <string name="sunday_short">S</string>
     <string name="name_of_product">Name of product</string>
     <string name="empty_name_warning">Enter the name of the product!</string>
+
+
+    <string name="notificaiton_title">SkinTrial</string>
+    <string name="notification_description">Time for Skincare | </string>
 </resources>
