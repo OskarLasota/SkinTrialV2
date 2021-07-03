@@ -17,27 +17,28 @@ import androidx.recyclerview.widget.RecyclerView
 import com.frezzcoding.skincareadvisor.R
 import com.frezzcoding.skincareadvisor.data.Schedule
 import com.frezzcoding.skincareadvisor.databinding.SchedulerViewBinding
-import com.frezzcoding.skincareadvisor.di.Injectable
+import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
-class SchedulerFragment : Fragment(), Injectable, SchedulesAdapter.OnItemClickListener {
+@AndroidEntryPoint
+class SchedulerFragment : Fragment(), SchedulesAdapter.OnItemClickListener {
 
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
 
-    private lateinit var binding : SchedulerViewBinding
-    private lateinit var scheduleAdapter : SchedulesAdapter
+    private lateinit var binding: SchedulerViewBinding
+    private lateinit var scheduleAdapter: SchedulesAdapter
     private val viewModel: ScheduleCachingViewModel by viewModels {
         viewModelFactory
     }
-    private lateinit var currentSchedules : ArrayList<Schedule>
+    private lateinit var currentSchedules: ArrayList<Schedule>
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = DataBindingUtil.inflate(
             inflater,
             R.layout.scheduler_view, container, false
@@ -50,10 +51,11 @@ class SchedulerFragment : Fragment(), Injectable, SchedulesAdapter.OnItemClickLi
         setListeners()
         viewModel.getSchedules()
     }
-    private fun setListeners(){
+
+    private fun setListeners() {
         viewModel.schedules.observe(viewLifecycleOwner) { list ->
             currentSchedules = list as ArrayList
-            if(!list.isNullOrEmpty()){
+            if (!list.isNullOrEmpty()) {
                 //update adapter
                 scheduleAdapter = SchedulesAdapter(list, viewModel, this, requireContext())
                 binding.scheduleRecycler.apply {
@@ -64,7 +66,7 @@ class SchedulerFragment : Fragment(), Injectable, SchedulesAdapter.OnItemClickLi
         }
 
         binding.fabAddschedule.setOnClickListener {
-            var bundle = bundleOf("schedule" to Schedule())
+            val bundle = bundleOf("schedule" to Schedule())
             Navigation.findNavController(binding.root).navigate(R.id.editScheduleFragment, bundle)
         }
 
@@ -74,9 +76,15 @@ class SchedulerFragment : Fragment(), Injectable, SchedulesAdapter.OnItemClickLi
             }
         })
 
-        var helper = ItemTouchHelper(object : ItemTouchHelper.SimpleCallback(0,
-            ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT){
-            override fun onMove(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder, target: RecyclerView.ViewHolder): Boolean {
+        val helper = ItemTouchHelper(object : ItemTouchHelper.SimpleCallback(
+            0,
+            ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT
+        ) {
+            override fun onMove(
+                recyclerView: RecyclerView,
+                viewHolder: RecyclerView.ViewHolder,
+                target: RecyclerView.ViewHolder
+            ): Boolean {
                 return false
             }
 
@@ -92,7 +100,7 @@ class SchedulerFragment : Fragment(), Injectable, SchedulesAdapter.OnItemClickLi
     }
 
     override fun onItemClick(schedule: Schedule) {
-        var bundle = bundleOf("schedule" to schedule)
+        val bundle = bundleOf("schedule" to schedule)
         Navigation.findNavController(binding.root).navigate(R.id.editScheduleFragment, bundle)
     }
 

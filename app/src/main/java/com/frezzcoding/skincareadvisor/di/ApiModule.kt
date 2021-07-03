@@ -3,6 +3,8 @@ package com.frezzcoding.skincareadvisor.di
 import com.frezzcoding.skincareadvisor.common.api.ApiService
 import dagger.Module
 import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
@@ -11,6 +13,7 @@ import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 
 @Module
+@InstallIn(SingletonComponent::class)
 class ApiModule {
 
     companion object{
@@ -39,6 +42,6 @@ class ApiModule {
 
     @Singleton
     @Provides
-    fun provideApiService(retrofit: Retrofit) = retrofit.create(ApiService::class.java)
+    fun provideApiService(retrofit: Retrofit): ApiService = retrofit.create(ApiService::class.java)
 
 }

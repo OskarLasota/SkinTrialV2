@@ -4,9 +4,12 @@ import com.frezzcoding.skincareadvisor.functionalities.scheduler.ScheduleReposit
 import com.frezzcoding.skincareadvisor.functionalities.scheduler.ScheduleRepositoryImpl
 import dagger.Binds
 import dagger.Module
+import dagger.hilt.InstallIn
+import dagger.hilt.components.SingletonComponent
 
 
 @Module(includes = [RepositoryModule.RepoBindings::class])
+@InstallIn(SingletonComponent::class)
 abstract class RepositoryModule {
 
     @Module

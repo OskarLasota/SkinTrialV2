@@ -3,15 +3,11 @@ package com.frezzcoding.skincareadvisor.functionalities.login
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
 import com.frezzcoding.skincareadvisor.R
-import com.frezzcoding.skincareadvisor.di.Injectable
-import javax.inject.Inject
+import dagger.hilt.android.AndroidEntryPoint
 
-class LoginFragment : Fragment(R.layout.login_view), Injectable {
-
-    @Inject
-    lateinit var viewModelFactory: ViewModelProvider.Factory
+@AndroidEntryPoint
+class LoginFragment : Fragment(R.layout.login_view) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

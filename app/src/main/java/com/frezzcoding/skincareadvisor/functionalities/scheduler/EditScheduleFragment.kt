@@ -19,14 +19,15 @@ import androidx.navigation.Navigation
 import com.frezzcoding.skincareadvisor.R
 import com.frezzcoding.skincareadvisor.data.Schedule
 import com.frezzcoding.skincareadvisor.databinding.EditscheduleFragmentBinding
-import com.frezzcoding.skincareadvisor.di.Injectable
 import com.frezzcoding.skincareadvisor.utils.NotificationBroadcast
 import com.frezzcoding.skincareadvisor.utils.getDisplayHours
 import com.frezzcoding.skincareadvisor.utils.getDisplayMinutes
+import dagger.hilt.android.AndroidEntryPoint
 import java.util.*
 import javax.inject.Inject
 
-class EditScheduleFragment : Fragment(), Injectable {
+@AndroidEntryPoint
+class EditScheduleFragment : Fragment() {
 
     private lateinit var binding : EditscheduleFragmentBinding
     private lateinit var schedule : Schedule
@@ -44,7 +45,7 @@ class EditScheduleFragment : Fragment(), Injectable {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = DataBindingUtil.inflate(
             inflater,
             R.layout.editschedule_fragment, container, false
@@ -70,7 +71,7 @@ class EditScheduleFragment : Fragment(), Injectable {
         if(requireArguments().get("schedule") != null) {
             schedule = requireArguments().get("schedule") as Schedule
             binding.schedule = schedule
-            schedule?.let{
+            schedule.let{
             if(schedule.id != 0) {
                 edit = true
                     if (schedule.monday) {
@@ -130,15 +131,15 @@ class EditScheduleFragment : Fragment(), Injectable {
                 schedule.hour = binding.timePickerStartHour.value
                 schedule.min = binding.timePickerStartMin.value
 
-                var time = getNextNotification()
+                val time = getNextNotification()
 
                 if(time != 0L){
-                    var inte = Intent(context, NotificationBroadcast::class.java)
-                    inte.putExtra("key", schedule.id)
+                    val intent = Intent(context, NotificationBroadcast::class.java)
+                    intent.putExtra("key", schedule.id)
                     val pi = PendingIntent.getBroadcast(
                         context,
                         schedule.id,
-                        inte,
+                        intent,
                         PendingIntent.FLAG_UPDATE_CURRENT
                     )
                     val am =

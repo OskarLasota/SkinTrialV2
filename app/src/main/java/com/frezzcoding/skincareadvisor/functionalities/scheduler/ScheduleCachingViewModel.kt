@@ -4,16 +4,15 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.frezzcoding.skincareadvisor.data.Curiosity
 import com.frezzcoding.skincareadvisor.data.Schedule
-import com.frezzcoding.skincareadvisor.di.Injectable
-import com.frezzcoding.skincareadvisor.functionalities.home.HomeRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 
+@HiltViewModel
 class ScheduleCachingViewModel @Inject constructor(private val repository : ScheduleRepository) : ViewModel(){
 
     private val _maxId = MutableLiveData<Int>()
