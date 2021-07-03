@@ -47,7 +47,7 @@ class MainActivity : AppCompatActivity() {
         return true
     }
 
-    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if(item?.itemId == R.id.accountFragment){
             if(user.loggedIn){
                 Navigation.findNavController(findViewById(R.id.nav_host_fragment)).navigate(R.id.accountFragment)

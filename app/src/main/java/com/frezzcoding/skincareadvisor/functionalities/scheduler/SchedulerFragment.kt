@@ -8,7 +8,6 @@ import androidx.core.os.bundleOf
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.observe
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.GridLayoutManager
@@ -16,22 +15,15 @@ import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.frezzcoding.skincareadvisor.R
 import com.frezzcoding.skincareadvisor.data.Schedule
-import com.frezzcoding.skincareadvisor.databinding.SchedulerViewBinding
 import dagger.hilt.android.AndroidEntryPoint
-import javax.inject.Inject
 
 @AndroidEntryPoint
 class SchedulerFragment : Fragment(), SchedulesAdapter.OnItemClickListener {
 
-
-    @Inject
-    lateinit var viewModelFactory: ViewModelProvider.Factory
-
     private lateinit var binding: SchedulerViewBinding
     private lateinit var scheduleAdapter: SchedulesAdapter
-    private val viewModel: ScheduleCachingViewModel by viewModels {
-        viewModelFactory
-    }
+    private val viewModel by viewModels<ScheduleCachingViewModel>()
+
     private lateinit var currentSchedules: ArrayList<Schedule>
 
     override fun onCreateView(

@@ -34,12 +34,7 @@ class EditScheduleFragment : Fragment() {
     private var edit : Boolean = false
     private var maxScheduleId : Int = 0
 
-    @Inject
-    lateinit var viewModelFactory: ViewModelProvider.Factory
-
-    private val viewModel: ScheduleCachingViewModel by viewModels {
-        viewModelFactory
-    }
+    private val viewModel by viewModels<ScheduleCachingViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater,
