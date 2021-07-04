@@ -46,7 +46,7 @@ class HomeFragment : Fragment(), CuriosityAdapter.OnItemClickListener {
     }
 
     private fun registerObservers() {
-        homeViewModel.curiosities.observe(viewLifecycleOwner, Observer {
+        homeViewModel.curiosities.observe(viewLifecycleOwner, {
             it?.let {
                 if (it.isNotEmpty()) {
                     setupAdapter(it)
@@ -63,8 +63,8 @@ class HomeFragment : Fragment(), CuriosityAdapter.OnItemClickListener {
     }
 
 
-    private fun setupAdapter(temp: ArrayList<Curiosity>) {
-        adapter = CuriosityAdapter(requireContext(), temp, true, this)
+    private fun setupAdapter(list: ArrayList<Curiosity>) {
+        adapter = CuriosityAdapter(requireContext(), list, true, this)
         binding.viewpager.adapter = adapter
 
         binding.indicator.highlighterViewDelegate = {

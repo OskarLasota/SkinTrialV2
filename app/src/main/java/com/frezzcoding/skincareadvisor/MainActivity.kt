@@ -29,7 +29,7 @@ class MainActivity : AppCompatActivity() {
         val navController = Navigation.findNavController(this,
             R.id.nav_host_fragment
         )
-        bottom_nav.setOnNavigationItemReselectedListener {
+        bottom_nav.setOnItemReselectedListener {
             //do nothing to ignore reselection of same freagment
         }
         setupBottomNavMenu(navController)
@@ -48,7 +48,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if(item?.itemId == R.id.accountFragment){
+        if(item.itemId == R.id.accountFragment){
             if(user.loggedIn){
                 Navigation.findNavController(findViewById(R.id.nav_host_fragment)).navigate(R.id.accountFragment)
                 return super.onOptionsItemSelected(item)
@@ -61,7 +61,7 @@ class MainActivity : AppCompatActivity() {
         val navController = Navigation.findNavController(this,
             R.id.nav_host_fragment
         )
-        val navigated = NavigationUI.onNavDestinationSelected(item!!, navController)
+        val navigated = NavigationUI.onNavDestinationSelected(item, navController)
         return navigated || super.onOptionsItemSelected(item)
     }
 

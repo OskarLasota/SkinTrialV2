@@ -12,26 +12,26 @@ import com.frezzcoding.skincareadvisor.R
 import com.frezzcoding.skincareadvisor.data.Curiosity
 import com.squareup.picasso.Picasso
 
-class CuriosityAdapter(context : Context,
+class CuriosityAdapter(var context : Context,
                        itemList : ArrayList<Curiosity>,
                        isInfinite : Boolean,
-                       private var onClickListener : OnItemClickListener) : LoopingPagerAdapter<Curiosity>(context, itemList, isInfinite)
+                       private var onClickListener : OnItemClickListener) : LoopingPagerAdapter<Curiosity>(itemList, isInfinite)
 {
     override fun bindView(convertView: View, listPosition: Int, viewType: Int) {
-        itemList?.let {list ->
-            if(listPosition <= list.size) {
-                if (list[listPosition].ad == "true") {
-                    var adImage = convertView.findViewById<ImageView>(R.id.iv_ad)
-                    adImage.visibility = View.VISIBLE
-                    adImage.setOnClickListener {
-                        onClickListener.onItemClick(list[listPosition])
-                    }
-                }
-            }
+        itemList?.let { list ->
+            val adImage = convertView.findViewById<ImageView>(R.id.iv_ad)
             val description = convertView.findViewById<TextView>(R.id.description)
             val image = convertView.findViewById<ImageView>(R.id.image)
-            convertView.findViewById<View>(R.id.image)
-                .setBackgroundColor(ContextCompat.getColor(context, android.R.color.background_light))
+
+            if (list[listPosition].ad == "true") {
+                adImage.visibility = View.VISIBLE
+                adImage.setOnClickListener {
+                    onClickListener.onItemClick(list[listPosition])
+                }
+            }else{
+                adImage.visibility = View.GONE
+            }
+
             description.text = list[listPosition].description
             Picasso.get().load(list[listPosition].image_url).into(image)
         }
