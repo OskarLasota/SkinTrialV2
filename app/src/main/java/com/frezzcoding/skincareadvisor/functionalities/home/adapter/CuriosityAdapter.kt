@@ -17,6 +17,10 @@ class CuriosityAdapter(var context : Context,
                        isInfinite : Boolean,
                        private var onClickListener : OnItemClickListener) : LoopingPagerAdapter<Curiosity>(itemList, isInfinite)
 {
+    override fun inflateView(viewType: Int, container: ViewGroup, listPosition: Int): View {
+        return LayoutInflater.from(context).inflate(R.layout.item_pager, container, false)
+    }
+
     override fun bindView(convertView: View, listPosition: Int, viewType: Int) {
         itemList?.let { list ->
             val adImage = convertView.findViewById<ImageView>(R.id.iv_ad)
@@ -35,10 +39,6 @@ class CuriosityAdapter(var context : Context,
             description.text = list[listPosition].description
             Picasso.get().load(list[listPosition].image_url).into(image)
         }
-    }
-
-    override fun inflateView(viewType: Int, container: ViewGroup, listPosition: Int): View {
-        return LayoutInflater.from(context).inflate(R.layout.item_pager, container, false)
     }
 
 
