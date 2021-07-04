@@ -4,8 +4,8 @@ Rewriting the original app found here : https://play.google.com/store/apps/detai
 
 ## Tech Stack & Open-Library Sources : 
 + Minimum SDK level 21
-+ 100% Kotlin based + Coroutines
-+ Dagger2-android
++ 100% Kotlin based + Coroutines / RXJava
++ DI - Dagger Hilt
 + JetPack
    + LiveData - notify domain layer data to views.
    + Lifecycle - dispose observing data when lifecycle state changes.
@@ -29,4 +29,4 @@ Rewriting the original app found here : https://play.google.com/store/apps/detai
 
 + JUnit
 + Integration Tests
-+ Re-implement notification scheduler feature, need to use broadcast to listen to timezone and user time change
++ Set up A/B Testing
