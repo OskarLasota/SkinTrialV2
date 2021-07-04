@@ -1,2 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <string name="home">Home</string>
+    <string name="schedule">Schedule</string>
+    <string name="routine">Routine</string>
+    <string name="add_schedule_title">Dodaj produkt do swojej rutyny!</string>
+    <string name="cancel">Anuluj</string>
+    <string name="save">Zapisz</string>
+    <string name="monday_short">P</string>
+    <string name="tuesday_short">W</string>
+    <string name="wednesday_short">S</string>
+    <string name="thursday_short">C</string>
+    <string name="friday_short">P</string>
+    <string name="saturday_short">S</string>
+    <string name="sunday_short">N</string>
+    <string name="name_of_product">Nazwa Produktu</string>
+    <string name="empty_name_warning">Wpisz nazwe Produktu!</string>
+
+
+    <string name="notificaiton_title">SkinTrial</string>
+    <string name="notification_description">Czas na SkinCare | </string>
+</resources>
