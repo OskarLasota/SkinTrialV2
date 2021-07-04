@@ -1,5 +1,10 @@
 package com.frezzcoding.skincareadvisor.functionalities.home
 
+import android.content.ActivityNotFoundException
+import android.content.Context
+import android.content.Intent
+import android.content.pm.PackageManager
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -21,10 +26,11 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class HomeFragment : Fragment(), CuriosityAdapter.OnItemClickListener {
 
-
     private lateinit var adapter: CuriosityAdapter
     private lateinit var binding: HomeViewBinding
     private val homeViewModel by viewModels<HomeViewModel>()
+    private val INSTAGRAM_INTENT = "com.instagram.android"
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -40,9 +46,8 @@ class HomeFragment : Fragment(), CuriosityAdapter.OnItemClickListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        homeViewModel.getCuriosities()
-
         registerObservers()
+        homeViewModel.getCuriosities()
     }
 
     private fun registerObservers() {
@@ -54,14 +59,6 @@ class HomeFragment : Fragment(), CuriosityAdapter.OnItemClickListener {
             }
         })
     }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        /*
-        cannot initialize lazy functions here
-         */
-    }
-
 
     private fun setupAdapter(list: ArrayList<Curiosity>) {
         adapter = CuriosityAdapter(requireContext(), list, true, this)
@@ -92,7 +89,24 @@ class HomeFragment : Fragment(), CuriosityAdapter.OnItemClickListener {
     }
 
     override fun onItemClick(curiosity: Curiosity) {
-        Toast.makeText(requireContext(), curiosity.description, Toast.LENGTH_LONG).show()
+        openIntent(curiosity.url)
+    }
+
+    private fun openIntent(url : String){
+        val uri = Uri.parse(url)
+        val intent = Intent(Intent.ACTION_VIEW, uri)
+        intent.setPackage(INSTAGRAM_INTENT)
+        if(isIntentAvailable(intent)){
+            startActivity(intent)
+        }else{
+            startActivity(Intent(Intent.ACTION_VIEW, uri))
+        }
+    }
+
+    private fun isIntentAvailable(intent: Intent): Boolean {
+        val packageManager: PackageManager = requireContext().packageManager
+        val list = packageManager.queryIntentActivities(intent, PackageManager.MATCH_DEFAULT_ONLY)
+        return list.size > 0
     }
 
 
