@@ -1,5 +1,12 @@
 package com.frezzcoding.skincareadvisor.utils
 
+import com.frezzcoding.skincareadvisor.common.AppConstants.FRIDAY
+import com.frezzcoding.skincareadvisor.common.AppConstants.MONDAY
+import com.frezzcoding.skincareadvisor.common.AppConstants.SATURDAY
+import com.frezzcoding.skincareadvisor.common.AppConstants.SUNDAY
+import com.frezzcoding.skincareadvisor.common.AppConstants.THURSDAY
+import com.frezzcoding.skincareadvisor.common.AppConstants.TUESDAY
+import com.frezzcoding.skincareadvisor.common.AppConstants.WEDNESDAY
 import com.frezzcoding.skincareadvisor.data.Schedule
 import java.util.*
 import java.util.concurrent.TimeUnit
@@ -22,7 +29,7 @@ fun getDisplayHours() : Array<String>{
 fun getNextNotificationDay(schedule : Schedule, day : String) : Long {
     val calendar = Calendar.getInstance()
     when(day){
-        "Mon" -> {
+        MONDAY -> {
             if (schedule.tuesday) {
                 return calendar.timeInMillis + (TimeUnit.DAYS.toMillis(1))
             }
@@ -45,7 +52,7 @@ fun getNextNotificationDay(schedule : Schedule, day : String) : Long {
                 return calendar.timeInMillis + (TimeUnit.DAYS.toMillis(7))
             }
         }
-        "Tue" -> {
+        TUESDAY -> {
             if (schedule.wednesday) {
                 return calendar.timeInMillis + (TimeUnit.DAYS.toMillis(1))
             }
@@ -68,7 +75,7 @@ fun getNextNotificationDay(schedule : Schedule, day : String) : Long {
                 return calendar.timeInMillis + (TimeUnit.DAYS.toMillis(7))
             }
         }
-        "Wed" -> {
+        WEDNESDAY -> {
             if (schedule.thursday) {
                 return calendar.timeInMillis + (TimeUnit.DAYS.toMillis(1))
             }
@@ -91,7 +98,7 @@ fun getNextNotificationDay(schedule : Schedule, day : String) : Long {
                 return calendar.timeInMillis + (TimeUnit.DAYS.toMillis(7))
             }
         }
-        "Thu" -> {
+        THURSDAY -> {
             if (schedule.friday) {
                 return calendar.timeInMillis + (TimeUnit.DAYS.toMillis(1))
             }
@@ -114,7 +121,7 @@ fun getNextNotificationDay(schedule : Schedule, day : String) : Long {
                 return calendar.timeInMillis + (TimeUnit.DAYS.toMillis(7))
             }
         }
-        "Fri" -> {
+        FRIDAY -> {
             if (schedule.saturday) {
                 return calendar.timeInMillis + (TimeUnit.DAYS.toMillis(1))
             }
@@ -137,7 +144,7 @@ fun getNextNotificationDay(schedule : Schedule, day : String) : Long {
                 return calendar.timeInMillis + (TimeUnit.DAYS.toMillis(7))
             }
         }
-        "Sat" -> {
+        SATURDAY -> {
             if (schedule.sunday) {
                 return calendar.timeInMillis + (TimeUnit.DAYS.toMillis(1))
             }
@@ -160,7 +167,7 @@ fun getNextNotificationDay(schedule : Schedule, day : String) : Long {
                 return calendar.timeInMillis + (TimeUnit.DAYS.toMillis(7))
             }
         }
-        "Sun" -> {
+        SUNDAY -> {
             if (schedule.monday) {
                 return calendar.timeInMillis + (TimeUnit.DAYS.toMillis(1))
             }

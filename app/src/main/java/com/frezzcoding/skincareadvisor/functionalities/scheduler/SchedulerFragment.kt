@@ -8,12 +8,12 @@ import androidx.core.os.bundleOf
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.observe
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.frezzcoding.skincareadvisor.R
+import com.frezzcoding.skincareadvisor.common.AppConstants.bundleSchedule
 import com.frezzcoding.skincareadvisor.data.Schedule
 import com.frezzcoding.skincareadvisor.databinding.SchedulerViewBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -59,7 +59,7 @@ class SchedulerFragment : Fragment(), SchedulesAdapter.OnItemClickListener {
         }
 
         binding.fabAddschedule.setOnClickListener {
-            val bundle = bundleOf("schedule" to Schedule())
+            val bundle = bundleOf(bundleSchedule to Schedule())
             Navigation.findNavController(binding.root).navigate(R.id.editScheduleFragment, bundle)
         }
 
@@ -93,7 +93,7 @@ class SchedulerFragment : Fragment(), SchedulesAdapter.OnItemClickListener {
     }
 
     override fun onItemClick(schedule: Schedule) {
-        val bundle = bundleOf("schedule" to schedule)
+        val bundle = bundleOf(bundleSchedule to schedule)
         Navigation.findNavController(binding.root).navigate(R.id.editScheduleFragment, bundle)
     }
 

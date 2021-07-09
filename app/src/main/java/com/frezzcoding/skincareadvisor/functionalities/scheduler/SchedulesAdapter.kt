@@ -106,6 +106,7 @@ class SchedulesAdapter(
         }
 
 
+        //FIXME see if possible to remove duplicate method by using Extensions
         private fun getNextNotification(schedule: Schedule): Long {
             val calendar = Calendar.getInstance()
             calendar.set(Calendar.HOUR_OF_DAY, schedule.hour)

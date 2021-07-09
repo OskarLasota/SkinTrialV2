@@ -13,9 +13,14 @@ import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.observe
 import androidx.navigation.Navigation
 import com.frezzcoding.skincareadvisor.R
+import com.frezzcoding.skincareadvisor.common.AppConstants.MAX_HOUR
+import com.frezzcoding.skincareadvisor.common.AppConstants.MAX_MINUTE
+import com.frezzcoding.skincareadvisor.common.AppConstants.MIN_HOUR
+import com.frezzcoding.skincareadvisor.common.AppConstants.MIN_INPUT_IN_FIELD
+import com.frezzcoding.skincareadvisor.common.AppConstants.MIN_MINUTE
+import com.frezzcoding.skincareadvisor.common.AppConstants.bundleSchedule
 import com.frezzcoding.skincareadvisor.data.Schedule
 import com.frezzcoding.skincareadvisor.databinding.EditscheduleFragmentBinding
 import com.frezzcoding.skincareadvisor.utils.NotificationBroadcast
@@ -61,8 +66,8 @@ class EditScheduleFragment : Fragment() {
     }
 
     private fun setProductValues(){
-        if(requireArguments().get("schedule") != null) {
-            schedule = requireArguments().get("schedule") as Schedule
+        if(requireArguments().get(bundleSchedule) != null) {
+            schedule = requireArguments().get(bundleSchedule) as Schedule
             binding.schedule = schedule
             schedule.let{
             if(schedule.id != 0) {
@@ -95,16 +100,16 @@ class EditScheduleFragment : Fragment() {
     }
 
     private fun init(){
-        binding.timePickerStartHour.minValue = 0
-        binding.timePickerStartHour.maxValue = 23
+        binding.timePickerStartHour.minValue = MIN_HOUR
+        binding.timePickerStartHour.maxValue = MAX_HOUR
         binding.timePickerStartHour.displayedValues = getDisplayHours() //extension function
-        binding.timePickerStartMin.minValue = 0
-        binding.timePickerStartMin.maxValue = 59
+        binding.timePickerStartMin.minValue = MIN_MINUTE
+        binding.timePickerStartMin.maxValue = MAX_MINUTE
         binding.timePickerStartMin.displayedValues = getDisplayMinutes() //extension function
     }
 
     private fun validationPasses() : Boolean{
-        if(binding.etTitle.text.toString().length < 2){
+        if(binding.etTitle.text.toString().length < MIN_INPUT_IN_FIELD){
             Toast.makeText(this.context, R.string.empty_name_warning, Toast.LENGTH_SHORT).show()
             return false
         }
@@ -152,6 +157,7 @@ class EditScheduleFragment : Fragment() {
         }
 
         //listeners for each day button
+        //fixme see if possible to reduce code by calling group listener?
         binding.tvMonday.setOnClickListener {
             if(schedule.monday){
                 binding.tvMonday.backgroundTintList = ContextCompat.getColorStateList(requireContext(), R.color.colorPrimary)
@@ -219,6 +225,7 @@ class EditScheduleFragment : Fragment() {
 
     }
 
+    //FIXME there is a method in extensions that could possibly reduce code duplication
     private fun getNextNotification() : Long {
         val calendar = Calendar.getInstance()
         calendar.set(Calendar.HOUR_OF_DAY, schedule.hour)

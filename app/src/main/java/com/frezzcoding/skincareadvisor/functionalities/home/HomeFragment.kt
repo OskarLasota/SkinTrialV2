@@ -14,6 +14,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.frezzcoding.skincareadvisor.R
+import com.frezzcoding.skincareadvisor.common.AppConstants.INSTAGRAM_INTENT
 import com.frezzcoding.skincareadvisor.data.Curiosity
 import com.frezzcoding.skincareadvisor.databinding.HomeViewBinding
 import com.frezzcoding.skincareadvisor.functionalities.home.adapter.CuriosityAdapter
@@ -25,7 +26,6 @@ class HomeFragment : Fragment(), CuriosityAdapter.OnItemClickListener {
     private lateinit var adapter: CuriosityAdapter
     private lateinit var binding: HomeViewBinding
     private val homeViewModel by viewModels<HomeViewModel>()
-    private val INSTAGRAM_INTENT = "com.instagram.android"
 
 
     override fun onCreateView(
