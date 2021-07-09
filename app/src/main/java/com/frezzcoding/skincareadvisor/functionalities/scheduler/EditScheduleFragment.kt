@@ -15,17 +15,18 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
 import com.frezzcoding.skincareadvisor.R
-import com.frezzcoding.skincareadvisor.common.AppConstants.MAX_HOUR
-import com.frezzcoding.skincareadvisor.common.AppConstants.MAX_MINUTE
-import com.frezzcoding.skincareadvisor.common.AppConstants.MIN_HOUR
-import com.frezzcoding.skincareadvisor.common.AppConstants.MIN_INPUT_IN_FIELD
-import com.frezzcoding.skincareadvisor.common.AppConstants.MIN_MINUTE
-import com.frezzcoding.skincareadvisor.common.AppConstants.bundleSchedule
+import com.frezzcoding.skincareadvisor.utils.AppConstants.MAX_HOUR
+import com.frezzcoding.skincareadvisor.utils.AppConstants.MAX_MINUTE
+import com.frezzcoding.skincareadvisor.utils.AppConstants.MIN_HOUR
+import com.frezzcoding.skincareadvisor.utils.AppConstants.MIN_INPUT_IN_FIELD
+import com.frezzcoding.skincareadvisor.utils.AppConstants.MIN_MINUTE
+import com.frezzcoding.skincareadvisor.utils.AppConstants.bundleSchedule
 import com.frezzcoding.skincareadvisor.data.Schedule
 import com.frezzcoding.skincareadvisor.databinding.EditscheduleFragmentBinding
 import com.frezzcoding.skincareadvisor.utils.NotificationBroadcast
 import com.frezzcoding.skincareadvisor.utils.getDisplayHours
 import com.frezzcoding.skincareadvisor.utils.getDisplayMinutes
+import com.frezzcoding.skincareadvisor.utils.getNextNotificationDay
 import dagger.hilt.android.AndroidEntryPoint
 import java.util.*
 
@@ -129,7 +130,7 @@ class EditScheduleFragment : Fragment() {
                 schedule.hour = binding.timePickerStartHour.value
                 schedule.min = binding.timePickerStartMin.value
 
-                val time = getNextNotification()
+                val time = getNextNotificationDay(schedule, Calendar.getInstance().time.toString().substring(0,3).lowercase())
 
                 if(time != 0L){
                     val intent = Intent(context, NotificationBroadcast::class.java)
@@ -223,169 +224,6 @@ class EditScheduleFragment : Fragment() {
         }
 
 
-    }
-
-    //FIXME there is a method in extensions that could possibly reduce code duplication
-    private fun getNextNotification() : Long {
-        val calendar = Calendar.getInstance()
-        calendar.set(Calendar.HOUR_OF_DAY, schedule.hour)
-        calendar.set(Calendar.MINUTE, schedule.hour)
-
-        if(calendar.time.toString().substring(0,3) == "Mon"){
-            val current = Calendar.getInstance()
-            val calendar1 = Calendar.getInstance()
-            calendar1.set(Calendar.HOUR_OF_DAY, schedule.hour)
-            calendar1.set(Calendar.MINUTE, schedule.min)
-            for(i in 0..7){
-                if(current.timeInMillis > calendar1.timeInMillis){
-                    calendar1.add(Calendar.DATE, 1)
-                    continue
-                }
-                when(i){
-                    0-> if(schedule.monday) {return calendar1.timeInMillis}
-                    1-> if(schedule.tuesday) {return calendar1.timeInMillis}
-                    2-> if(schedule.wednesday) {return calendar1.timeInMillis}
-                    3-> if(schedule.thursday) {return calendar1.timeInMillis}
-                    4-> if(schedule.friday) {return calendar1.timeInMillis}
-                    5-> if(schedule.saturday) {return calendar1.timeInMillis}
-                    6-> if(schedule.sunday) {return calendar1.timeInMillis}
-                }
-                calendar1.add(Calendar.DATE, 1)
-            }
-        }
-        if(calendar.time.toString().substring(0,3) == "Tue"){
-            val current = Calendar.getInstance()
-            val calendar1 = Calendar.getInstance()
-            calendar1.set(Calendar.HOUR_OF_DAY, schedule.hour)
-            calendar1.set(Calendar.MINUTE, schedule.min)
-            for(i in 0..7){
-                if(current.timeInMillis > calendar1.timeInMillis){
-                    calendar1.add(Calendar.DATE, 1)
-                    continue
-                }
-                when(i){
-                    0-> if(schedule.tuesday) {return calendar1.timeInMillis}
-                    1-> if(schedule.wednesday) {return calendar1.timeInMillis}
-                    2-> if(schedule.thursday) {return calendar1.timeInMillis}
-                    3-> if(schedule.friday) {return calendar1.timeInMillis}
-                    4-> if(schedule.saturday) {return calendar1.timeInMillis}
-                    5-> if(schedule.sunday) {return calendar1.timeInMillis}
-                    6-> if(schedule.monday) {return calendar1.timeInMillis}
-                }
-                calendar1.add(Calendar.DATE, 1)
-            }
-        }
-        if(calendar.time.toString().substring(0,3) == "Wed"){
-            val current = Calendar.getInstance()
-            val calendar1 = Calendar.getInstance()
-            calendar1.set(Calendar.HOUR_OF_DAY, schedule.hour)
-            calendar1.set(Calendar.MINUTE, schedule.min)
-            for(i in 0..7){
-                if(current.timeInMillis > calendar1.timeInMillis){
-                    calendar1.add(Calendar.DATE, 1)
-                    continue
-                }
-                when(i){
-                    0-> if(schedule.wednesday) {return calendar1.timeInMillis}
-                    1-> if(schedule.thursday) { return calendar1.timeInMillis}
-                    2-> if(schedule.friday) {return calendar1.timeInMillis}
-                    3-> if(schedule.saturday) {return calendar1.timeInMillis}
-                    4-> if(schedule.sunday) {return calendar1.timeInMillis}
-                    5-> if(schedule.monday) {return calendar1.timeInMillis}
-                    6-> if(schedule.tuesday) {return calendar1.timeInMillis}
-                }
-                calendar1.add(Calendar.DATE, 1)
-            }
-        }
-        if(calendar.time.toString().substring(0,3) == "Thu"){
-            val current = Calendar.getInstance()
-            val calendar1 = Calendar.getInstance()
-            calendar1.set(Calendar.HOUR_OF_DAY, schedule.hour)
-            calendar1.set(Calendar.MINUTE, schedule.min)
-            for(i in 0..7){
-                if(current.timeInMillis > calendar1.timeInMillis){
-                    calendar1.add(Calendar.DATE, 1)
-                    continue
-                }
-                when(i){
-                    0-> if(schedule.thursday) {return calendar1.timeInMillis}
-                    1-> if(schedule.friday) {return calendar1.timeInMillis}
-                    2-> if(schedule.saturday) {return calendar1.timeInMillis}
-                    3-> if(schedule.sunday) {return calendar1.timeInMillis}
-                    4-> if(schedule.monday) {return calendar1.timeInMillis}
-                    5-> if(schedule.tuesday) {return calendar1.timeInMillis}
-                    6-> if(schedule.wednesday) {return calendar1.timeInMillis}
-                }
-                calendar1.add(Calendar.DATE, 1)
-            }
-        }
-        if(calendar.time.toString().substring(0,3) == "Fri"){
-            val current = Calendar.getInstance()
-            val calendar1 = Calendar.getInstance()
-            calendar1.set(Calendar.HOUR_OF_DAY, schedule.hour)
-            calendar1.set(Calendar.MINUTE, schedule.min)
-            for(i in 0..7){
-                if(current.timeInMillis > calendar1.timeInMillis){
-                    calendar1.add(Calendar.DATE, 1)
-                    continue
-                }
-                when(i){
-                    0-> if(schedule.friday) {return calendar1.timeInMillis}
-                    1-> if(schedule.saturday) {return calendar1.timeInMillis}
-                    2-> if(schedule.sunday) {return calendar1.timeInMillis}
-                    3-> if(schedule.monday) {return calendar1.timeInMillis}
-                    4-> if(schedule.tuesday) {return calendar1.timeInMillis}
-                    5-> if(schedule.wednesday) {return calendar1.timeInMillis}
-                    6-> if(schedule.thursday) {return calendar1.timeInMillis}
-                }
-                calendar1.add(Calendar.DATE, 1)
-            }
-        }
-        if(calendar.time.toString().substring(0,3) == "Sat"){
-            val current = Calendar.getInstance()
-            val calendar1 = Calendar.getInstance()
-            calendar1.set(Calendar.HOUR_OF_DAY, schedule.hour)
-            calendar1.set(Calendar.MINUTE, schedule.min)
-            for(i in 0..7){
-                if(current.timeInMillis > calendar1.timeInMillis){
-                    calendar1.add(Calendar.DATE, 1)
-                    continue
-                }
-                when(i){
-                    0-> if(schedule.saturday) {return calendar1.timeInMillis}
-                    1-> if(schedule.sunday) {return calendar1.timeInMillis}
-                    2-> if(schedule.monday) {return calendar1.timeInMillis}
-                    3-> if(schedule.tuesday) {return calendar1.timeInMillis}
-                    4-> if(schedule.wednesday) {return calendar1.timeInMillis}
-                    5-> if(schedule.thursday) {return calendar1.timeInMillis}
-                    6-> if(schedule.friday) {return calendar1.timeInMillis}
-                }
-                calendar1.add(Calendar.DATE, 1)
-            }
-        }
-        if(calendar.time.toString().substring(0,3) == "Sun"){
-            val current = Calendar.getInstance()
-            val calendar1 = Calendar.getInstance()
-            calendar1.set(Calendar.HOUR_OF_DAY, schedule.hour)
-            calendar1.set(Calendar.MINUTE, schedule.min)
-            for(i in 0..7){
-                if(current.timeInMillis > calendar1.timeInMillis){
-                    calendar1.add(Calendar.DATE, 1)
-                    continue
-                }
-                when(i){
-                    0-> if(schedule.sunday) {return calendar1.timeInMillis}
-                    1-> if(schedule.monday) {return calendar1.timeInMillis}
-                    2-> if(schedule.tuesday) {return calendar1.timeInMillis}
-                    3-> if(schedule.wednesday) {return calendar1.timeInMillis}
-                    4-> if(schedule.thursday) {return calendar1.timeInMillis}
-                    5-> if(schedule.friday) {return calendar1.timeInMillis}
-                    6-> if(schedule.saturday) {return calendar1.timeInMillis}
-                }
-                calendar1.add(Calendar.DATE, 1)
-            }
-        }
-        return 0
     }
 
 

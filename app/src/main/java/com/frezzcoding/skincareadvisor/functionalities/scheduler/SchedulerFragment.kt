@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.frezzcoding.skincareadvisor.R
-import com.frezzcoding.skincareadvisor.common.AppConstants.bundleSchedule
+import com.frezzcoding.skincareadvisor.utils.AppConstants.bundleSchedule
 import com.frezzcoding.skincareadvisor.data.Schedule
 import com.frezzcoding.skincareadvisor.databinding.SchedulerViewBinding
 import dagger.hilt.android.AndroidEntryPoint

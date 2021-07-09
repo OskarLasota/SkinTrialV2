@@ -1,4 +1,4 @@
-package com.frezzcoding.skincareadvisor.common
+package com.frezzcoding.skincareadvisor.utils
 
 object AppConstants {
     const val INSTAGRAM_INTENT = "com.instagram.android"

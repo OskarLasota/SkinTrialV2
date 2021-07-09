@@ -1,12 +1,12 @@
 package com.frezzcoding.skincareadvisor.utils
 
-import com.frezzcoding.skincareadvisor.common.AppConstants.FRIDAY
-import com.frezzcoding.skincareadvisor.common.AppConstants.MONDAY
-import com.frezzcoding.skincareadvisor.common.AppConstants.SATURDAY
-import com.frezzcoding.skincareadvisor.common.AppConstants.SUNDAY
-import com.frezzcoding.skincareadvisor.common.AppConstants.THURSDAY
-import com.frezzcoding.skincareadvisor.common.AppConstants.TUESDAY
-import com.frezzcoding.skincareadvisor.common.AppConstants.WEDNESDAY
+import com.frezzcoding.skincareadvisor.utils.AppConstants.FRIDAY
+import com.frezzcoding.skincareadvisor.utils.AppConstants.MONDAY
+import com.frezzcoding.skincareadvisor.utils.AppConstants.SATURDAY
+import com.frezzcoding.skincareadvisor.utils.AppConstants.SUNDAY
+import com.frezzcoding.skincareadvisor.utils.AppConstants.THURSDAY
+import com.frezzcoding.skincareadvisor.utils.AppConstants.TUESDAY
+import com.frezzcoding.skincareadvisor.utils.AppConstants.WEDNESDAY
 import com.frezzcoding.skincareadvisor.data.Schedule
 import java.util.*
 import java.util.concurrent.TimeUnit
@@ -26,8 +26,13 @@ fun getDisplayHours() : Array<String>{
 }
 
 
+
+//todo find way to reduce this code
+//passing day through parameters to make feature more testable
 fun getNextNotificationDay(schedule : Schedule, day : String) : Long {
     val calendar = Calendar.getInstance()
+    calendar.set(Calendar.HOUR_OF_DAY, schedule.hour)
+    calendar.set(Calendar.MINUTE, schedule.min)
     when(day){
         MONDAY -> {
             if (schedule.tuesday) {

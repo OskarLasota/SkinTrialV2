@@ -14,7 +14,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.frezzcoding.skincareadvisor.R
-import com.frezzcoding.skincareadvisor.common.AppConstants.INSTAGRAM_INTENT
+import com.frezzcoding.skincareadvisor.utils.AppConstants.INSTAGRAM_INTENT
 import com.frezzcoding.skincareadvisor.data.Curiosity
 import com.frezzcoding.skincareadvisor.databinding.HomeViewBinding
 import com.frezzcoding.skincareadvisor.functionalities.home.adapter.CuriosityAdapter
