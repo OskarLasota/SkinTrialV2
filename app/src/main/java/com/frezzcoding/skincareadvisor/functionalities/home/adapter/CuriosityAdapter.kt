@@ -34,7 +34,6 @@ class CuriosityAdapter(var context : Context,
             }else{
                 adImage.visibility = View.GONE
             }
-
             description.text = list[listPosition].description
             Picasso.get().load(list[listPosition].image_url).into(image)
         }
