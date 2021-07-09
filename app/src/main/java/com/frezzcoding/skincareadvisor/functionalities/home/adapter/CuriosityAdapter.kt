@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.core.content.ContextCompat
 import com.asksira.loopingviewpager.LoopingPagerAdapter
 import com.frezzcoding.skincareadvisor.R
 import com.frezzcoding.skincareadvisor.data.Curiosity

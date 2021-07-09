@@ -5,7 +5,6 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.frezzcoding.skincareadvisor.data.Schedule
-import com.frezzcoding.skincareadvisor.data.User
 
 
 @Database(entities = [Schedule::class], version = 1, exportSchema = false)

@@ -1,7 +1,5 @@
 package com.frezzcoding.skincareadvisor.functionalities.home
 
-import android.content.ActivityNotFoundException
-import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
@@ -11,12 +9,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
 import android.widget.LinearLayout
-import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
 import com.frezzcoding.skincareadvisor.R
 import com.frezzcoding.skincareadvisor.data.Curiosity
 import com.frezzcoding.skincareadvisor.databinding.HomeViewBinding
@@ -92,13 +88,13 @@ class HomeFragment : Fragment(), CuriosityAdapter.OnItemClickListener {
         openIntent(curiosity.url)
     }
 
-    private fun openIntent(url : String){
+    private fun openIntent(url: String) {
         val uri = Uri.parse(url)
         val intent = Intent(Intent.ACTION_VIEW, uri)
         intent.setPackage(INSTAGRAM_INTENT)
-        if(isIntentAvailable(intent)){
+        if (isIntentAvailable(intent)) {
             startActivity(intent)
-        }else{
+        } else {
             startActivity(Intent(Intent.ACTION_VIEW, uri))
         }
     }

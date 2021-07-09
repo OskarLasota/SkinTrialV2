@@ -4,10 +4,8 @@ import android.app.AlarmManager
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
-import android.os.Build
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.annotation.RequiresApi
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
@@ -28,7 +26,7 @@ class SchedulesAdapter(
 
     private lateinit var binding: CardSchedulesBinding
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        var inflater: LayoutInflater = LayoutInflater.from(parent.context)
+        val inflater: LayoutInflater = LayoutInflater.from(parent.context)
         binding = DataBindingUtil.inflate(inflater, R.layout.card_schedules, parent, false)
 
         return ViewHolder(binding, viewModel, ctx)
@@ -74,14 +72,14 @@ class SchedulesAdapter(
             this.schedule = schedule
             binding.switch1.setOnClickListener {
                 if (binding.switch1.isChecked) {
-                    var time = getNextNotification(schedule)
+                    val time = getNextNotification(schedule)
                     if (time != 0L) {
-                        var inte = Intent(ctx, NotificationBroadcast::class.java)
-                        inte.putExtra("key", schedule.id)
+                        val intent = Intent(ctx, NotificationBroadcast::class.java)
+                        intent.putExtra("key", schedule.id)
                         val pi = PendingIntent.getBroadcast(
                             ctx,
                             schedule.id,
-                            inte,
+                            intent,
                             PendingIntent.FLAG_UPDATE_CURRENT
                         )
                         val am =
@@ -92,14 +90,14 @@ class SchedulesAdapter(
                     schedule.checked = true
                     viewModel.updateSchedule(schedule)
                 } else {
-                    var intent = Intent(ctx, NotificationBroadcast::class.java)
-                    var pendingIntent = PendingIntent.getBroadcast(
+                    val intent = Intent(ctx, NotificationBroadcast::class.java)
+                    val pendingIntent = PendingIntent.getBroadcast(
                         ctx,
                         schedule.id,
                         intent,
                         PendingIntent.FLAG_CANCEL_CURRENT
                     )
-                    var alarmManager = ctx.getSystemService(Context.ALARM_SERVICE) as AlarmManager
+                    val alarmManager = ctx.getSystemService(Context.ALARM_SERVICE) as AlarmManager
                     alarmManager.cancel(pendingIntent)
                     schedule.checked = false
                     viewModel.updateSchedule(schedule)

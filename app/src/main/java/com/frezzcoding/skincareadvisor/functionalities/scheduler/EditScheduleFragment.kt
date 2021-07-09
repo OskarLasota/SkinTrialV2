@@ -13,7 +13,6 @@ import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.observe
 import androidx.navigation.Navigation
 import com.frezzcoding.skincareadvisor.R
@@ -24,7 +23,6 @@ import com.frezzcoding.skincareadvisor.utils.getDisplayHours
 import com.frezzcoding.skincareadvisor.utils.getDisplayMinutes
 import dagger.hilt.android.AndroidEntryPoint
 import java.util.*
-import javax.inject.Inject
 
 @AndroidEntryPoint
 class EditScheduleFragment : Fragment() {

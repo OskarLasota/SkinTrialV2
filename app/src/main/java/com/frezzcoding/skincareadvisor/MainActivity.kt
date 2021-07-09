@@ -4,14 +4,12 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.navigation.ui.NavigationUI
 import com.frezzcoding.skincareadvisor.data.User
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_main.*
-import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
@@ -25,8 +23,9 @@ class MainActivity : AppCompatActivity() {
         setUI()
     }
 
-    private fun setUI(){
-        val navController = Navigation.findNavController(this,
+    private fun setUI() {
+        val navController = Navigation.findNavController(
+            this,
             R.id.nav_host_fragment
         )
         bottom_nav.setOnItemReselectedListener {
@@ -41,24 +40,27 @@ class MainActivity : AppCompatActivity() {
             NavigationUI.setupWithNavController(it, navController)
         }
     }
-    
+
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu_toolbar, menu)
         return true
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if(item.itemId == R.id.accountFragment){
-            if(user.loggedIn){
-                Navigation.findNavController(findViewById(R.id.nav_host_fragment)).navigate(R.id.accountFragment)
+        if (item.itemId == R.id.accountFragment) {
+            if (user.loggedIn) {
+                Navigation.findNavController(findViewById(R.id.nav_host_fragment))
+                    .navigate(R.id.accountFragment)
                 return super.onOptionsItemSelected(item)
-            }else{
-                Navigation.findNavController(findViewById(R.id.nav_host_fragment)).navigate(R.id.loginFragment)
+            } else {
+                Navigation.findNavController(findViewById(R.id.nav_host_fragment))
+                    .navigate(R.id.loginFragment)
                 return super.onOptionsItemSelected(item)
             }
 
         }
-        val navController = Navigation.findNavController(this,
+        val navController = Navigation.findNavController(
+            this,
             R.id.nav_host_fragment
         )
         val navigated = NavigationUI.onNavDestinationSelected(item, navController)
