@@ -159,6 +159,7 @@ class EditScheduleFragment : Fragment() {
 
         //listeners for each day button
         //fixme see if possible to reduce code by calling group listener?
+
         binding.tvMonday.setOnClickListener {
             if(schedule.monday){
                 binding.tvMonday.backgroundTintList = ContextCompat.getColorStateList(requireContext(), R.color.greyish)
