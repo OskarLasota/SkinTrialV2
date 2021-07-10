@@ -13,13 +13,13 @@ class Schedule : Serializable {
     var title : String
     var hour : Int = 0
     var min : Int = 0
-    var monday : Boolean = false
-    var tuesday : Boolean = false
-    var wednesday : Boolean = false
-    var thursday : Boolean = false
-    var friday : Boolean = false
-    var saturday : Boolean = false
-    var sunday : Boolean = false
+    var monday : Boolean = true
+    var tuesday : Boolean = true
+    var wednesday : Boolean = true
+    var thursday : Boolean = true
+    var friday : Boolean = true
+    var saturday : Boolean = true
+    var sunday : Boolean = true
 
     @Ignore
     constructor(id : Int,checked : Boolean, title : String, hour : Int, min : Int, monday : Boolean, tuesday : Boolean, wed : Boolean, thu : Boolean, fri : Boolean, sat : Boolean, sun : Boolean){
@@ -37,6 +37,6 @@ class Schedule : Serializable {
         this.sunday = sun
     }
 
-    constructor() : this(0, true,"", 0, 0, false, false, false, false, false, false, false)
+    constructor() : this(0, true,"", 0, 0, true, true, true, true, true, true, true)
 
 }
