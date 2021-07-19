@@ -1,6 +1,7 @@
 package com.frezzcoding.skincareadvisor.functionalities.login
 
 import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.activity.result.ActivityResult
@@ -22,6 +23,19 @@ import kotlinx.android.synthetic.main.login_view.*
 class LoginFragment : Fragment(R.layout.login_view) {
 
     lateinit var googleSignInClient : GoogleSignInClient
+
+    var resultLancher = registerForActivityResult(ActivityResultContracts.StartActivityForResult(), object: ActivityResultCallback<ActivityResult>{
+        override fun onActivityResult(result: ActivityResult) {
+            if(result.resultCode == Activity.RESULT_OK){
+                var intent = result.data
+                var task = GoogleSignIn.getSignedInAccountFromIntent(intent)
+                handleSignInResult(task)
+            }
+        }
+
+    })
+
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -49,16 +63,7 @@ class LoginFragment : Fragment(R.layout.login_view) {
 
     private fun signIn() {
         val signInIntent = googleSignInClient.signInIntent
-        val getContent = registerForActivityResult(ActivityResultContracts.StartActivityForResult(), object: ActivityResultCallback<ActivityResult>{
-            override fun onActivityResult(result: ActivityResult) {
-                if(result.resultCode == Activity.RESULT_OK){
-                    var intent = result.data
-                    var task = GoogleSignIn.getSignedInAccountFromIntent(intent)
-                    handleSignInResult(task)
-                }
-            }
-
-        })
+        resultLancher.launch(signInIntent)
     }
 
     private fun handleSignInResult(task : Task<GoogleSignInAccount>){
