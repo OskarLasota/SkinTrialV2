@@ -1,5 +1,7 @@
 # SkinTrial
 
+# development paused 
+
 Rewriting the original app found here : https://play.google.com/store/apps/details?id=com.frezzcoding.skincare&hl=en_GB
 
 ## Tech Stack & Open-Library Sources : 
